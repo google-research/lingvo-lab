@@ -1,0 +1,341 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Speech-to-speech translation</title>
+
+    <style>
+     h1, h2, h3, p {padding: 0 8px;}
+     td, audio {max-width: 265px;}
+     audio {width: 265px; height: 50px;}
+     table {border-collapse: collapse;}
+     th {padding-bottom: 4px;}
+     tr.transcript > td {
+       font-style: italic;
+       font-size: 11pt;
+       color: #222;
+       padding: 2px 3px 15px;
+       vertical-align: top;
+     }
+    </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+     var fisher_samples = [
+       // 1.
+       ["002",
+        "Qué tal, eh, yo soy Guillermo, ¿Cómo estás?",
+        "How's it going, hey, this is Guillermo, How are you?",
+        "hey i'm william how are you",
+        "hi a i'm of the ermo how are you"],
+       // 2.
+       ["005",
+        "Ah, yo soy José.",
+        "Oh, this is José.",
+        "ah i am jose",
+        "ah i mose eh"],
+       // 3.
+       ["031",
+        "O sea, viví en Perú, has- hasta hace tres meses",
+        "That is, I was living in Peru until three months ago",
+        "i mean i lived in peru until three months ago",
+        "i mean i lived in peru for three months"],
+       // 4.
+       ["035",
+        "no, lo que pasa es que yo estudié dos años en la universidad de Perú, y luego me he transferido acá. o sea, soy un international transfer",
+        "no, what happened what I studied at the University of Peru for two years and then I transferred. that is I'm an international transfer",
+        "no it happens as that i studied two years in the university of peru and then i brought here i mean i'm an inner net in a transfer",
+        "no what happens is that i studied two years in peru university the literary is here i marring in earnest"],
+       // 5.
+       ["219",
+        "Y, eso es lo que le pasan a ella, la critican, entonces, ella yo digo, mira, Dios te quiere, y como tu eres, pero tu tienes, no puedes estar criticando a todo el mundo.",
+        "And, that is what happens to her, she is criticized, then, she I say, look, God loves you, and like you are, but you have to, you cannot be criticizing everyone.",
+        "and that's what her happens to them they criticise her and then she i say look god loves you and how you are but you have you can't be criticising everybody",
+        "and that's what passes to her the crandison so i do i want you to like you are but you have they can't be criticating everyone"],
+       // 6.
+       ["763",
+        "para la computadora, tiene eh para mover el mouse",
+        "for the computer, it has eh to move the mouse",
+        "for the computer it has ada moved them all",
+        "for the computer he asked to move the mouse"],
+       // 7.
+       ["775",
+        "no ya compramos los pasajes, nos vamos para Arkansas nos vamos a Arkansas a pasar eh quince, una semana",
+        "No we already bought the tickets, we will leave for Arkansas for 15, a week",
+        "no we already bought the tickets we went to stop where my famous ones are fifteen oa week",
+        "no we bought the passage that we are stopping for we we'll go to him who has passed a fifteen a week"],
+       // 8.
+       ["339",
+        "De Venezuela.",
+        "Venezuela?",
+        "from venezuela",
+        "from venezuela"],
+       // 9.
+       ["687",
+        "el, imagínate yo a Geni con los dos idiomas también eh me habla los dos idiomas, ehh ya puede leer los dos idiomas pero igual tiene acento y le cuesta el español",
+        "imagine me with Geni with two languages also she speaks both languages, she can read both languages but nevertheless she has an accent and has trouble with Spanish",
+        "the imagine jenny with the two languages also ay speak both languages i can already read them two languages but the same it has an accent in its heart and spanish",
+        "imagine jenny with both languages too eh it talks to me all language and ten reedy languages but it have has an accent in you with harder and spanish"],
+       // 10.
+       ["836",
+        "No, eh tengo una niña de veintitrés meses y tengo un niño ahora de cuatro días",
+        "No, uh, i have a twenty-three months old daughter and i have a four days old son now",
+        "no way i have a twenty three months old daughter and i have a child now four days",
+        "no a i have a a twenty three months old girl and i have a boy for four days now"]
+     ];
+
+     var conv_samples = [
+       // 1.
+       ["1001047364882201153",
+        "nadar con delfines",
+        "Swimming with Dolphins",
+        "swimming with dolphins",
+        "swimming with dolphin",
+        "swimming with dolphers",
+        "swimming with dolphins"],
+       // 2.
+       ["10014492116422610050",
+        "Dan, \"Sí, eso es la cosa.\"",
+        "Dan: Yeah, that's the thing.",
+        "daniel that's the thing",
+        "done yeah that's the thing",
+        "damn here that's that then",
+        "down here that's the thing"],
+       // 3.
+       ["10018188347059055723",
+        "Y usted no sabrá a menos que usted pida.",
+        "And, you will not know unless you ask.",
+        "and you will not know unless you ask",
+        "and you will not know unless you ask mo",
+        "and you will not know unless you ask",
+        "and you will not know unless you ask"],
+       // 4.
+       ["10020791949464738657",
+        "Deja de hacer eso.",
+        "Stop doing that.",
+        "stop doing that",
+        "doctoring that",
+        "stopped during that",
+        "stop doing that"],
+       // 5.
+       ["10025411426812728167",
+        "nuevos empleados de Cranfield University",
+        "New hires at Cranfield University",
+        "new hires at cornfield university",
+        "new hires at cronfield university",
+        "new hires at crinfield university",
+        "new fires at form found university"],
+       // 6.
+       ["10058821801688040303",
+        "Por lo tanto, mirar alrededor del país y lo que ves.",
+        "So, look around the country and what do you see?",
+        "so look around the country and what you see",
+        "and look around the country in what do you see",
+        "so look around the country and what you see",
+        "so look around the country and what you see"],
+       // 7.
+       ["10071097508043022696",
+        "Le digo que lo siento, no sé lo que me atrapó.",
+        "I tell him I'm sorry, I do not know what got into me.",
+        "i tell him i'm sorry i do not know what happened to me",
+        "i tell you i am sorry i do not know what catched me",
+        "i tell her i'm sorry i do not know what i have had",
+        "at home i saw it have you not know what they kept out"],
+       // 8.
+       ["1012326507685528471",
+        "Verdaderamente no entiendo lo que quieres decir.",
+        "I really do not understand what you mean.",
+        "i do not really understand what you mean",
+        "i do not really understand what you want it",
+        "i do notary understand what humor",
+        "i do not really understand what you meant"],
+       // 9.
+       ["10148907792880119076",
+        "Larry me preguntó cómo me sentía y creo que es cuando empecé a llorar.",
+        "Larry asked me how I felt and I think that is when I started to cry.",
+        "i wondered how i felt and i think that's when i started to cry",
+        "larry asked me how i felt and that i think that's when i started crying",
+        "larry asked you how i felt and i think it's when i started to cry",
+        "larry asked how i felt and i think it's what i started to cry"],
+       // 10.
+       ["10187025692704313613",
+        "Y cuando tienen que meterse en sus personajes, yo nada más se los digo y ellos lo hacen.",
+        "and you just tell them when they have to get into their characters and they do.",
+        "and when they have to get their characters i usually tell them and they do it",
+        "and when they have to get into their characters i never says i say them and they do it",
+        "and when they have to get in in their characters i nothing of letters and they do",
+        "and when may have to get in their characters i nothing more lettering they do"],
+       // 11.
+       ["10160343901636052006",
+        "Fue bueno, creo que se olvidó. No es fácil hablar, lo sé.",
+        "It was good, I think he forgot ... Not easy to talk, I know.",
+        "it was good i think forgot it is not easy to talk about i know",
+        "it was good i think she forgot it is not easy to talk about i know",
+        "oh well i think forget it's not easy to talk i know",
+        "oh well i think for thee it's now easy to talk i do"],
+       // 12.
+       ["10218770658837064427",
+        "Oh, siento oír eso. ¿Cómo te llevas con tu mamá?",
+        "Oh, I'm sorry to hear that. - How do you get on with your mum?",
+        "oh i'm sorry to hear that how do you get with your maum",
+        "oh i'm sorry too you're that how are you doing you with your mamma",
+        "oh sorry are you that how do you stake with you all",
+        "oh sorry he heard that how do you take with your ma"],
+       // 13.
+       ["10097600450430891671",
+        "He visto un aumento del 60% en el valor de las ventas.",
+        "I've seen a 60% increase in value of sales",
+        "i have seen a sixty increase in the present and the value of the sales",
+        "i have seen a sixty person in the per cent in the fendon",
+        "i have seen a nervous sixteen in the then",
+        "i have seen hararrius has succeeded in the set in the value of"],
+       // 14.
+       ["10832986884596224196",
+        "¿Sabes? Cuando no conoces la ciencia, no ves el cuadro completo.",
+        "You know, when you do not know the science, you do not see the whole picture.",
+        "you know when you do not know science it's not a full picture",
+        "you know when you do not know science it is not whole picture",
+        "you know when you do not know science it is not the complete fire",
+        "you know when you do not know science is not the full papa"],
+       // 15.
+       ["10549326060661037688",
+        "Tengo cierta experiencia en cuidar y enseñar a mis primos cuando eran jóvenes.",
+        "I've got some experience in looking after and teaching my cousins when they were young.",
+        "i have certain experience in care and teach my cousins when they were young",
+        "i have certain experience in taking and teaching my cousins when they were young",
+        "eyes some experience in tearing and teach up my cousins when they were young",
+        "athos"],
+       // 16.
+       ["1057638511207593052",
+        "Tu carrera está despegando, quiero decir, te veo todo el tiempo en revistas y chismes.",
+        "You're career is taking off. I mean, I see you all the time in magazines and gossip sights.",
+        "your career is intriguing i mean i see you all the time gossip and gossip",
+        "your career is taking off i mean i see you all the time and interview and gossip",
+        "your carouse is taken i mean i see all the time in giving you thus and",
+        "your career is ticket i mean i see all the time in gourville gossip"]
+     ];
+
+     function audio_cell(path, id) {
+       return '<td><audio controls>' +
+              '<source src="' + path + '/' + id + '.wav" type="audio/wav" />' +
+              '</audio></td>';
+     }
+
+     $(document).ready(function(){
+       // Fisher
+       for (var i = 0; i < fisher_samples.length; ++i) {
+         var index = i + 1;
+         var anchor = "fisher_" + index;
+         var html = "<tr class='audio'>";
+         html += "<td><a name='" + anchor + "' href='#" + anchor + "'>" + index + ".</a></td>";
+         html += audio_cell("fisher_src", fisher_samples[i][0]);
+         html += audio_cell("fisher_tgt", fisher_samples[i][0]);
+         html += audio_cell("fisher_csc", fisher_samples[i][0]);
+         html += audio_cell("fisher_s2s", fisher_samples[i][0]);
+         html += "</tr><tr class='transcript'>";
+         html += "<td></td>";
+         for (var j = 1; j < 5; ++j) {
+           html += "<td>" + fisher_samples[i][j] + "</td>";
+         }
+         html += "</tr>"
+         $('#fisher-table > tbody:last-child').append(html);
+       }
+
+       // Conversational
+       for (var i = 0; i < conv_samples.length; ++i) {
+         var index = i + 1;
+         var anchor = "conversational_" + index;
+         var html = "<tr class='audio'>";
+         html += "<td><a name='" + anchor + "' href='#" + anchor + "'>" + index + ".</a></td>";
+         html += audio_cell("grdt_source", conv_samples[i][0]);
+         html += audio_cell("grdt_target", conv_samples[i][0]);
+         html += audio_cell("cscd_st_tts", conv_samples[i][0]);
+         html += audio_cell("canonical_v", conv_samples[i][0]);
+         html += audio_cell("cond_source", conv_samples[i][0]);
+         html += audio_cell("cond_target", conv_samples[i][0]);
+         html += "</tr><tr class='transcript'>"
+         html += "<td></td>";
+         for (var j = 1; j < 7; ++j) {
+           html += "<td>" + conv_samples[i][j] + "</td>";
+         }
+         html += "</tr>"
+         $('#conversational-table > tbody:last-child').append(html);
+       }
+
+       // Handle anchors
+       if (location.hash) {
+         var requested = location.hash;
+         location.hash = '';
+         location.hash = requested;
+       }
+     });
+    </script>
+  </head>
+
+  <body>
+    <div>
+
+      <h1>Audio samples from "Direct speech-to-speech translation with a sequence-to-sequence model"</h1>
+
+      <!--<p><b>Paper:</b> <a href="https://arxiv.org/abs/">arXiv</a></p>-->
+      <p><b>Authors:</b> Ye Jia &ast;, Ron J. Weiss &ast;, Fadi Biadsy, Wolfgang Macherey, Melvin Johnson, Zhifeng Chen, Yonghui Wu.</p>
+      <p><b>Abstract:</b>
+        We present an attention-based sequence-to-sequence neural network which can directly translate speech from one language into speech in another language, without relying on an intermediate text representation. The network is trained end-to-end, learning to map speech spectrograms into target spectrograms in another language, corresponding to the translated content (in a different canonical voice). We further demonstrate the ability to synthesize translated speech using the voice of the source speaker. We conduct experiments on two Spanish-to-English speech translation datasets, and find that the proposed model slightly underperforms a baseline cascade of a direct speech-to-text translation model and a text-to-speech synthesis model, demonstrating the feasibility of the approach on this very challenging task.
+      </p>
+
+      <h3>Contents</h3>
+      <ul>
+        <li><a href="#fisher">Fisher Spanish-to-English</a></li>
+        <li><a href="#conversational">Conversational Spanish-to-English</a></li>
+      </ul>
+
+      <h2 id="fisher">Fisher Spanish-to-English</h2>
+
+      <p><i>These audio samples correspond to Section 3.2 in the paper. Source speech from Spanish telephone conversations is translated into English speech in a canonical voice.</i></p>
+
+      <p><i>Transcripts for ground truth samples come from the original data; while the transcripts for predictions are transcribed by an ASR model for evaluation (see the beginning of Section 3 in the paper).</i></p>
+
+      <table id="fisher-table">
+	<!-- Index -->        <col/>
+	<!-- Ground truth --> <col span="2" />
+	<!-- Predictions -->  <col span="2" style="background-color: #FCFCFC;" />
+        <thead>
+          <tr>
+            <th></th><th colspan="2">Ground truth</th><th colspan="2">Predictions</th>
+          </tr>
+          <tr>
+            <th class="index"></th><th class="audio">Source (Spanish)</th><th class="audio">Target (English)</th><th class="audio">Cascade
+	      </th><th class="audio">S2ST</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+
+      <h2 id="conversational">Conversational Spanish-to-English</h2>
+
+      <p><i>These audio samples correspond to Section 3.1 and Section 3.4 in the paper. The canonical voice predictions correspond to Section 3.1, and the source voice and target voice predictions correspond to Section 3.4.</i></p>
+
+      <p><i>The transcripts for ground truth samples come from the original data; while the transcripts for predictions are transcribed by an ASR model used for evaluation (see the beginning of Section 3 in the paper).</i></p>
+
+      <p><i>The samples were cherrypicked in order to inlcude both good cases as well as typical bad cases.</i></p>
+
+
+      <table id="conversational-table">
+	<!-- Index -->        <col/>
+	<!-- Ground truth --> <col span="2" />
+	<!-- Predictions -->  <col span="2" style="background-color: #FCFCFC;" />
+	<!-- Prediction w/ Voice transfer -->  <col span="2" style="background-color: #F9F9F9;" />
+        <thead>
+          <tr>
+            <th></th><th colspan="2">Ground truth</th><th colspan="2">Predictions</th><th colspan="2">Predictions with voice transfer</th>
+          </tr>
+          <tr>
+            <th></th><th>Source (Spanish)</th><th>Target (English)</th><th>Cascade (ST + TTS)</th><th>S2ST (canonical voice)</th><th>S2ST (source voice)</th><th>S2ST (target voice)</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+
+    </div>
+  </body>
+</html>
