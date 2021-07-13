@@ -1,0 +1,368 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Audio samples from "Translatotron 2: Robust direct speech-to-speech translation"</title>
+
+    <style>
+     h1, h2, h3, p {padding: 0 8px;}
+     td, audio {max-width: 265px;}
+     audio {width: 265px; height: 50px;}
+     table {border-collapse: collapse;}
+     th {padding-bottom: 4px;}
+     tr.transcript > td {
+       font-style: italic;
+       font-size: 11pt;
+       color: #222;
+       padding: 2px 3px 15px;
+       vertical-align: top;
+     }
+    </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+     var conv_samples = [
+       // 1.
+       ["10681380956280113880",
+        "Pero cuando usted es un artista, realmente en su mayor parte, que realmente quiere crear.",
+        "But when you are an artist, you really for the most part, you just really want to create.",
+        "but when you are an artist it really is for the most part you really want to create",
+        "but when you are an artist it really is the most part you really want to create",
+        "but when you are an artist really on the most part he really wants to create",
+        "but when you're an artist that really is those parts you really want to"],
+       // 2.
+       ["10681841461943939369",
+        "Lo sé, son tan hermosos.",
+        "I know, they're so beautiful.",
+        "i know they're so beautiful",
+        "i know they're so beautiful",
+        "i know they're so beautiful",
+        "i know they're so beautiful"],
+       // 3.
+       ["10682998441488002966",
+        "No voy a dejarte morir, soy médico.",
+        "I'm not gonna let you die. I'm a doctor.",
+        "i'm not going to let you die i'm a doctor",
+        "i'm not going to let you die i'm a doctor",
+        "i'm not going to let him die i'm the anna",
+        "i'm not going to let you die i am sorry"],
+       // 4.
+       ["10683378730756247646",
+        "Así que, una vez más, es una selva y si quieres sobrevivir",
+        "So, once again, it's a jungle and if you want to survive",
+        "so once again it's a jungle and if you want to survive",
+        "so once again it's a jumble and if you want to survive",
+        "so once again it's a junction and if you want to survive",
+        "so once again it is in general walk and that they want to survive"],
+       // 5.
+       ["10684330814076754395",
+        "Bueno, estás cansado, tal vez lo dejaste. No, definitivamente tenía mi cartera.",
+        "Well, you're tired, maybe you left it-- No, I definitely had my wallet.",
+        "well tired maybe you left it no i definitely had my wallet",
+        "well he's tired maybe you want it no i definitely hadn't i wanted",
+        "well you're tired maybe you left him i definitely knew myself as my wallet",
+        "well he said charlotte"],
+     ];
+
+     var speaker_turn_samples = [
+       // 1.
+       ["000",
+        '"Bueno, ya sabes, las relaciones no son realmente mi fuerte." "Por la zona de Rosy Pension."',
+        '"Well, you know, relationships are not really my forte." "What\'s Near Rosy Pension"',
+        "well you know relationships are not really my strength what's mere rosy pension",
+        "well you know the relationships are not really my forte but the rosy pension area",
+        "well you know one's institutions remotely my forte what's near rosy pension",
+        "well you know relationships are not really my throngs"],
+       // 2.
+       ["001",
+        '"Claro, claro, pero ya ves, me gusta cómo te golpeaste, chico." "Eso podría ser cualquier cosa, sabes."',
+        '"Sure, sure, but you see, I like the way you hit, kid." "That could be anything, you know."',
+        "sure sure but you see i like how you beat you boy that could beat anything you know",
+        "sure sure but you see i like how you hit boyd that could be anything",
+        "sure sure but you see i like that how you've hit it why that couldn't be anything you know",
+        "sure but you see i like how you hit anything you"],
+       ["002",
+        '"de 24 fuentes en 12 países" "Ah, aquí viene el pánico. Bien, Radley, no exactamente pánico."',
+        '"from 24 sources in 12 countries" "Aaaand here comes the panic ... Okay, Radley did not exactly panic."',
+        "from twenty four sources in twelve countries ah here he panics well rodley did not exactly panic",
+        "from twenty four sources in twelve countries",
+        "from twenty four sources in twelve countries oh here come panic well raleigh did not exactly panic",
+        "from twenty four sources in twelve countries and i am an exact mechanic"],
+       ["003",
+        '"AMN dice que quiere restaurar la coalición democrática." "Mira, sé que quieres saborear el momento, pero tenemos que salir de aquí."',
+        '"AMN says it wants to restore the democratic coalition" "Look, I know you wanna savor the moment ... - but we gotta get out of here."',
+        "a m n says that wants to restore democratic coalition look i know you want to save the moment but we've got to get out of here",
+        "a m n says they want to save the moment but we got to get out of here",
+        "a m hen says i i wants to res",
+        "a m n says it wants to restore the democratic coalition"],
+       ["004",
+        '"En el fin de semana hemos hablado vino." "Papá, mira, solo quiero saber de qué estás hablando."',
+        '"At the weekend we talked wine." "Dad look, I just want to know what you\'re talking about."',
+        "on the week end we talked about wine dad look i just want to know what you're talking about",
+        "the week end we spoke and ah dad look i just want to know what you're talking about",
+        "although we didn't we talked now dad look i just want to know what you're talking about",
+        "all the way dad look i just want to know what you're talking about"],
+     ];
+
+     function audio_cell(path, id) {
+       return '<td><audio controls>' +
+              '<source src="' + path + '/' + id + '.wav" type="audio/wav" />' +
+              '</audio></td>';
+     }
+
+     $(document).ready(function(){
+       // Conversational
+       for (var i = 0; i < conv_samples.length; ++i) {
+         var index = i + 1;
+         var anchor = "conversational_" + index;
+         var html = "<tr class='audio'>";
+         html += "<td><a name='" + anchor + "' href='#" + anchor + "'>" + index + ".</a></td>";
+         html += audio_cell("conv/src", conv_samples[i][0]);
+         html += audio_cell("conv/tgt", conv_samples[i][0]);
+         html += audio_cell("conv/t2", conv_samples[i][0]);
+         html += audio_cell("conv/t2_trans", conv_samples[i][0]);
+         html += audio_cell("conv/t1", conv_samples[i][0]);
+         html += audio_cell("conv/t1_trans", conv_samples[i][0]);
+         html += "</tr><tr class='transcript'>"
+         html += "<td></td>";
+         for (var j = 1; j < 7; ++j) {
+           html += "<td>" + conv_samples[i][j] + "</td>";
+         }
+         html += "</tr>"
+         $('#conversational-table > tbody:last-child').append(html);
+       }
+
+       // Speaker turn
+       for (var i = 0; i < speaker_turn_samples.length; ++i) {
+         var index = i + 1;
+         var anchor = "speaker_turn_" + index;
+         var html = "<tr class='audio'>";
+         html += "<td><a name='" + anchor + "' href='#" + anchor + "'>" + index + ".</a></td>";
+         html += audio_cell("speaker_turn/src", speaker_turn_samples[i][0]);
+         html += audio_cell("speaker_turn/tgt", speaker_turn_samples[i][0]);
+         html += audio_cell("speaker_turn/t2_concat", speaker_turn_samples[i][0]);
+         html += audio_cell("speaker_turn/t2", speaker_turn_samples[i][0]);
+         html += audio_cell("speaker_turn/t1_concat", speaker_turn_samples[i][0]);
+         html += audio_cell("speaker_turn/t1", speaker_turn_samples[i][0]);
+         html += "</tr><tr class='transcript'>"
+         html += "<td></td>";
+         for (var j = 1; j < 7; ++j) {
+           html += "<td>" + speaker_turn_samples[i][j] + "</td>";
+         }
+         html += "</tr>"
+         $('#speaker-turn-table > tbody:last-child').append(html);
+       }
+
+       var covost_samples = {
+         'de': [
+           ["000",
+            "Die Unterseite ist hellgrau mit einem hell-lohfarbenen Anflug.",
+            "The lower part is light green with a light tawny shade.",
+            "the under side is light gray with a light blue colored flight",
+            "the under side is light gray with a light low von lids low"],
+           ["001",
+            "Kommen Sie zum Punkt.",
+            "Make a statement.",
+            "come with me to the newspaper",
+            "catch it over to mine"],
+           ["002",
+            "Der Park ist weiterhin Ausgangspunkt für längere Touren in die umliegenden Parks.",
+            "The park continues to be the starting point for longer tours to the surrounding parks.",
+            "the park is further extensive and longer the park is still in the surrounding park",
+            "the park is officially extensive for language in the surrounding parks"],
+           ["003",
+            "Sammlern fällt es schwer, sich von Dingen zu trennen.",
+            "Collectors find it hard to part with things.",
+            "columbine does have serious kloon connections",
+            "demanded is handily focussed on separate from ganging"]
+         ],
+         'fr': [
+           ["000",
+            "Ainsi, la plupart des éléments techniques spécifiques ont initialement été développés pour la course.",
+            "Therefore, most of the specific technical components were initially developed for racing.",
+            "thus most specific technical elements were initially developed for the race",
+            "thus most of the technical specific elements were initially developed for the race"],
+           ["001",
+            "Silvestri succède ainsi à Jerry Goldsmith, le compositeur du premier film.",
+            "Silvestri thus succeeds Jerry Goldsmith, the composer of the first film.",
+            "sitter street succeeded jerry goldsmith the composer of the first movie",
+            "silver street ends advance to jerry goldsmith the composer of the first movie"],
+           ["002",
+            "\"Les circonstances et les causes de l'accident ne sont, pour l'heure, pas déterminées.\"",
+            "The circumstances and causes of the accident have not been determined for the time being.",
+            "the circumstances and the causes of the accident are not certain",
+            "the circumstances and the causes of the accident are not determined for there"],
+           ["003",
+            "\"En tous cas, il n'eut pas d'enfant puisque la seigneurie échut à son frère.\"",
+            "Anyway, He had no child because the Lordship passed to his brother.",
+            "in any case there was no child since the lordship and judges their brother",
+            "in any case there is no child since the signory is following its mother"]
+         ],
+         'es': [
+           ["000",
+            "Desde un acantilado cercano se observa una buena vista del estadio.",
+            "There’s a cliff near the stadium where you can get a good view of it.",
+            "from a nearby corner you can see a good view of the stadium",
+            "the narcon flame connects and a grief was lodged in the stadium"],
+           ["001",
+            "Juega de defensa y su actual equipo es el Shamrock Rovers de Irlanda.",
+            "He plays defense and his current team is the Shamrock Rovers from Ireland.",
+            "he plays as a defender and his current team is san roke roberts to ireland",
+            "he plays as defender and his current team is sandrode roberts dayland"],
+           ["002",
+            "Sobrevivió a la Guerra civil, pero posteriormente entró en una profunda crisis económica.",
+            "He survived the Civil War, but fell later into a profound economic crisis.",
+            "he survived the civil war but later entered a deep economic crisis",
+            "he survived the civil war but later interested in a deep economic crisis aid"],
+           ["003",
+            "Con flores solitarias, de color blanco cremoso, oscureciendo a naranja-rojo con la edad.",
+            "With lonely, creamy white flowers, which begin to darken with age, taking an orange and red tint.",
+            "with solitary flowers white creamy colour dark red orange with light",
+            "like solitary flowers of a crimson coloured color they are changing a reddish clairy orange"]
+         ],
+         'ca': [
+           ["000",
+            "La resta de plantes estan estructurades en tres eixos verticals.",
+            "The rest of the plants are structured in three vertical axes.",
+            "the rest of the floors are structured in three vertical axis",
+            "the rest of the plants are structured in three vertical axis"],
+           ["001",
+            "\"El president, llavors, introduirà el sobre a l'urna i un vocal de la mesa anotarà al cens l'exercici del vot.\"",
+            "The president will then put the envelope in the urn and his assistant will register the vote in the census.",
+            "the president then will introduce his alert and a vocal vocabulary for the census of the vote exercise",
+            "the president goes more introduced to the airman and a dedicator taking bow of the shed of the center in the exercises in the city"],
+           ["002",
+            "Es troba en boscos riberencs inundats periòdicament de Brasil, Veneçuela i Bolívia.",
+            "It can be found in riparian areas with periodical floods in Brazil, Venezuela and Bolivia.",
+            "it is found in river forests flooded periodically from brazil venezuela and bolivia",
+            "it is found in river forests and flooded randomly from brazil venezuela and bolivia"],
+           ["003",
+            "En aquest temps els clans rajputs pujaven en importància.",
+            "At this time, the Rajput clans raised in importance.",
+            "during these times the rescue clans were important",
+            "at this time the terracaduas motivated importance"]
+         ],
+       }
+
+       var LANG_NAME = {'de': 'German', 'fr': 'French', 'es': 'Spanish', 'ca': 'Catalan'};
+
+       // CoVoST 2
+       for (var lang of ['fr', 'de', 'es', 'ca']) {
+         html = "<tr><td colspan=2>" + LANG_NAME[lang] + "</td></tr>";
+         $('#covost-table > tbody:last-child').append(html);
+         for (var i = 0; i < covost_samples[lang].length; ++i) {
+           var index = i + 1;
+           var anchor = "covost_" + lang + "_" + index;
+           var html = "<tr class='audio'>";
+           html += "<td><a name='" + anchor + "' href='#" + anchor + "'>" + index + ".</a></td>";
+           html += audio_cell("covost/" + lang + "_src", covost_samples[lang][i][0]);
+           html += audio_cell("covost/" + lang + "_tgt", covost_samples[lang][i][0]);
+           html += audio_cell("covost/" + lang + "_t2", covost_samples[lang][i][0]);
+           html += audio_cell("covost/" + lang + "_t1", covost_samples[lang][i][0]);
+           html += "</tr><tr class='transcript'>";
+           html += "<td></td>";
+           for (var j = 1; j < 5; ++j) {
+             html += "<td>" + covost_samples[lang][i][j] + "</td>";
+           }
+           html += "</tr>"
+           $('#covost-table > tbody:last-child').append(html);
+         }
+       }
+
+       // Handle anchors
+       if (location.hash) {
+         var requested = location.hash;
+         location.hash = '';
+         location.hash = requested;
+       }
+     });
+    </script>
+  </head>
+
+  <body>
+    <div>
+
+      <h1>Audio samples from "Translatotron 2: Robust direct speech-to-speech translation"</h1>
+
+      <p><b>Paper:</b> arXiv
+      <p><b>Authors:</b> Ye Jia, Michelle Tadmor Ramanovich, Tal Remez, Roi Pomerantz.</p>
+      <p><b>Abstract:</b>
+        We present <i>Translatotron 2</i>, a neural direct speech-to-speech translation model that can be trained end-to-end. Translatotron 2 consists of a speech encoder, a phoneme decoder, a mel-spectrogram synthesizer, and an attention module that connects all the previous three components. Experimental results suggest that Translatotron 2 outperforms the original Translatotron by a large margin in terms of translation quality and predicted speech naturalness, and drastically improves the robustness of the predicted speech by mitigating over-generation, such as babbling or long pause.
+
+        We also propose a new method for retaining the source speaker's voice in the translated speech. The trained model is restricted to retain the source speaker's voice, and unlike the original Translatotron, it is not able to generate speech in a different speaker's voice, making the model more robust for production deployment, by mitigating potential misuse for creating spoofing audio artifacts. When the new method is used together with a simple concatenation-based data augmentation, the trained Translatotron 2 model is able to retain each speaker's voice for input with speaker turns.
+      </p>
+
+      <h3>Contents</h3>
+      <ul>
+        <li><a href="#conversational">Spanish-to-English (on Conversational corpus)</a></li>
+        <li><a href="#speaker-turns">Voice retaining with speaker turns (on Conversational corpus)</a></li>
+        <li><a href="#covost">Multilingual X-to-English (on CoVoST 2 corpus)</a></li>
+      </ul>
+
+      <h2 id="conversational">Spanish-to-English (on Conversational corpus)</h2>
+
+      <p><i>These audio samples were randomly sampled from the evaluation set in Table 2 and Table 3 in the paper. The S2ST models were trained on the Conversational Spanish-to-English dataset. Each S2ST model has one variant for outputting in a canonical female speaker's voice, and another variant for retaining the source speaker's voice in the translated speech.</i></p>
+
+      <p><i>Reference audios were synthesized with a TTS model with crosslingual voice transfer capacity (see Section 4.1 in the paper). Transcripts for the sources and references are ground truth from the corpus; transcripts for the model predictions were transcribed by an ASR model used for evaluation  (see Section 5.1 in the paper).</i></p>
+
+      <p><i>In some cases (e.g. group 2), the TTS-synthesized references (and training targets) fail to retain the source speakers' voices. As a result, the trained S2ST models also make similar mistakes. See also the samples in the next section.</i></p>
+
+      <table id="conversational-table">
+	      <col/>
+	      <col span="2" />
+	      <col span="2" style="background-color: #FCFCFC;" />
+	      <col span="2" style="background-color: #F9F9F9;" />
+        <thead>
+          <tr>
+            <th></th><th colspan="2">Ground truth</th><th colspan="2">Translatotron 2</th><th colspan="2">Translatotron</th>
+          </tr>
+          <tr>
+            <th></th><th>Source (Spanish)</th><th>Reference (English)</th><th>Canonical voice</th><th>Voice retaining</th><th>Canonical voice</th><th>Voice retaining</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+
+      <h2 id="speaker-turns">Voice retaining with speaker turns (on Conversational corpus)</h2>
+
+      <p><i>These audio samples were randomly sampled from the evaluation sets in Table 4, corresponding to Section 4.2 and 5.4.1 in the paper.</i></p>
+      <p><i>The source audios are the connetation of randomly sampled pairs of human recordings; the reference audios are the concatenation of the corresponding TTS synthesized reference audios. The model predictions are the direct outputs from the models on the concatenated source input, without further post-processing. The transcripts for the source and reference are concatenation of the ground truth from the corpus (each segment in a pair of quotation marks); the transcripts on the model predictions were transcribed by an ASR model used for evaluation.</i></p>
+
+      <p><i>These samples show that when the concatenation augmentation (concat aug) is used during training, both Translatotron 2 and Translatotron are able to retain each speaker's voice on inputs with speaker turns; in contrast, when the concatenation augmentation is not used, the predicted audio is typically in one input speaker's voice, and some times have trouble on handling the entire input for translation (e.g. group 3 and 4). In either case, the prediction from Translatotron 2 is sigicantly more natural, more fluent, and more complete than the same from Translatotron.</i></p>
+
+      <p><i>It is interesting that in group 5, despite that the TTS synthesized reference makes mistake on the first speaker's voice (incorrect gender), Translatotron 2 (w/ concat aug.) is able to predict in voices more similar to the source (correct gender).</i></p>
+
+      <table id="speaker-turn-table">
+	      <col/>
+	      <col span="2" />
+	      <col span="2" style="background-color: #FCFCFC;" />
+	      <col span="2" style="background-color: #F9F9F9;" />
+        <thead>
+          <tr>
+            <th></th><th>Source (Spanish)</th><th>Reference (English)</th><th>Translatotron 2 (w/ concat aug)</th><th>Translatotron 2</th><th>Translatotron (w/ concat aug)</th><th>Translatotron</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+
+      <h2 id="covost">Multilingual X-to-English (on CoVoST 2 corpus)</h2>
+
+      <p><i>These audio samples were randomly sampled from the evaluation set in Table 5, corresponding to Section 5.5 in the paper. The S2ST models were trained on CoVoST 2 dataset, and are able to translate French, German, Spanish and Catalan speech into English speech in a canonical voice.</i></p>
+
+      <p><i>Reference audios were synthesized with a TTS model. Transcripts for the sources and references are ground truth from the corpus; transcripts for the model predictions were transcribed by an ASR model used for evaluation.</i></p>
+
+      <table id="covost-table">
+	      <col/>
+	      <col span="2" />
+	      <col span="2" style="background-color: #FCFCFC;" />
+        <thead>
+          <tr>
+            <th></th><th>Source</th><th>Reference (English)</th><th>Translatotron 2</th><th>Translatotron 1</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+
+    </div>
+  </body>
+</html>
