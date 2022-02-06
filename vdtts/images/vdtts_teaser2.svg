@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   version="1.1"
+   width="451px"
+   height="191px"
+   viewBox="-0.5 -0.5 451 191"
+   id="svg62"
+   sodipodi:docname="vdtts_teaser2.svg"
+   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <sodipodi:namedview
+     id="namedview64"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     inkscape:zoom="2.767184"
+     inkscape:cx="225.31931"
+     inkscape:cy="95.584535"
+     inkscape:window-width="3840"
+     inkscape:window-height="2160"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg62" />
+  <defs
+     id="defs2" />
+  <image
+     x="269.85999"
+     y="67.519997"
+     width="179.11"
+     height="179.11"
+     xlink:href="oneframe.jpg"
+     preserveAspectRatio="none"
+     id="image4" />
+  <path
+     d="m 243.16,113.36 h 24.73"
+     fill="none"
+     stroke="#000000"
+     stroke-miterlimit="10"
+     pointer-events="stroke"
+     id="path6" />
+  <path
+     d="m 270.86,113.36 -3.96,1.98 0.99,-1.98 -0.99,-1.98 z"
+     fill="#000000"
+     stroke="#000000"
+     stroke-miterlimit="10"
+     pointer-events="all"
+     id="path8" />
+  <rect
+     x="175.14"
+     y="96.360001"
+     width="68.019997"
+     height="34.009998"
+     rx="5.0999999"
+     ry="5.0999999"
+     fill="#dae8fc"
+     stroke="#6c8ebf"
+     pointer-events="all"
+     id="rect10" />
+  <g
+     transform="matrix(0.5668,0,0,0.5668,-0.5,-0.5)"
+     id="g16">
+    <switch
+       id="switch14">
+      <foreignObject
+         style="overflow: visible; text-align: left;"
+         pointer-events="none"
+         width="177%"
+         height="177%"
+         requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+        <xhtml:div
+           style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 118px; height: 1px; padding-top: 200px; margin-left: 310px;">
+          <xhtml:div
+             style="box-sizing: border-box; font-size: 0; text-align: center; ">
+            <xhtml:div
+               style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+              <xhtml:font
+                 style="font-size: 30px">VDTTS</xhtml:font>
+            </xhtml:div>
+          </xhtml:div>
+        </xhtml:div>
+      </foreignObject>
+      <text
+         x="369"
+         y="204"
+         fill="#000000"
+         font-family="Helvetica"
+         font-size="12px"
+         text-anchor="middle"
+         id="text12">VDTTS</text>
+    </switch>
+  </g>
+  <image
+     x="15.94"
+     y="-0.5"
+     width="62.91"
+     height="62.91"
+     xlink:href="oneframe.jpg"
+     preserveAspectRatio="none"
+     id="image18" />
+  <image
+     x="27.27"
+     y="10.84"
+     width="62.91"
+     height="62.91"
+     xlink:href="oneframe.jpg"
+     preserveAspectRatio="none"
+     id="image20" />
+  <image
+     x="38.610001"
+     y="22.17"
+     width="62.91"
+     height="62.91"
+     xlink:href="oneframe.jpg"
+     preserveAspectRatio="none"
+     id="image22" />
+  <image
+     x="49.950001"
+     y="33.509998"
+     width="62.91"
+     height="62.91"
+     xlink:href="oneframe.jpg"
+     preserveAspectRatio="none"
+     id="image24" />
+  <path
+     d="m 124.7,76.8 h 25.22 v 28.06 h 21.61"
+     fill="none"
+     stroke="#000000"
+     stroke-miterlimit="10"
+     pointer-events="stroke"
+     id="path26" />
+  <path
+     d="m 174.51,104.86 -3.97,1.98 0.99,-1.98 -0.99,-1.99 z"
+     fill="#000000"
+     stroke="#000000"
+     stroke-miterlimit="10"
+     pointer-events="all"
+     id="path28" />
+  <image
+     x="61.279999"
+     y="44.84"
+     width="62.91"
+     height="62.91"
+     xlink:href="oneframe.jpg"
+     preserveAspectRatio="none"
+     id="image30" />
+  <path
+     d="m 124.7,153.04 h 25.22 v -31.18 h 21.61"
+     fill="none"
+     stroke="#000000"
+     stroke-miterlimit="10"
+     pointer-events="stroke"
+     id="path32" />
+  <path
+     d="m 174.51,121.86 -3.97,1.99 0.99,-1.99 -0.99,-1.98 z"
+     fill="#000000"
+     stroke="#000000"
+     stroke-miterlimit="10"
+     pointer-events="all"
+     id="path34" />
+  <rect
+     x="0"
+     y="124.7"
+     width="124.7"
+     height="56.68"
+     fill="none"
+     stroke="none"
+     pointer-events="all"
+     id="rect36" />
+  <g
+     transform="matrix(0.5668,0,0,0.5668,-0.5,-0.5)"
+     id="g42">
+    <switch
+       id="switch40">
+      <foreignObject
+         style="overflow: visible; text-align: left;"
+         pointer-events="none"
+         width="177%"
+         height="177%"
+         requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+        <xhtml:div
+           style="display: flex; align-items: unsafe flex-start; justify-content: unsafe center; width: 218px; height: 1px; padding-top: 227px; margin-left: 1px;">
+          <xhtml:div
+             style="box-sizing: border-box; font-size: 0; text-align: center; ">
+            <xhtml:div
+               style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+              <xhtml:span
+                 style="color: rgb(0 , 0 , 0) ; font-size: 30px ; font-style: normal ; font-weight: 400 ; letter-spacing: normal ; text-indent: 0px ; text-transform: none ; word-spacing: 0px ; display: inline ; float: none">&quot;it's not an entitlement <xhtml:br />
+it's a demand&quot;</xhtml:span>
+            </xhtml:div>
+          </xhtml:div>
+        </xhtml:div>
+      </foreignObject>
+      <text
+         x="110"
+         y="239"
+         fill="#000000"
+         font-family="Helvetica"
+         font-size="12px"
+         text-anchor="middle"
+         id="text38">&quot;it's not an entitlement...</text>
+    </switch>
+  </g>
+  <rect
+     x="280.85001"
+     y="45.34"
+     width="158.14"
+     height="22.67"
+     fill="none"
+     stroke="none"
+     pointer-events="all"
+     id="rect44" />
+  <g
+     transform="matrix(0.5668,0,0,0.5668,-0.5,-0.5)"
+     id="g50">
+    <switch
+       id="switch48">
+      <foreignObject
+         style="overflow: visible; text-align: left;"
+         pointer-events="none"
+         width="177%"
+         height="177%"
+         requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+        <xhtml:div
+           style="display: flex; align-items: unsafe flex-start; justify-content: unsafe center; width: 277px; height: 1px; padding-top: 87px; margin-left: 497px;">
+          <xhtml:div
+             style="box-sizing: border-box; font-size: 0; text-align: center; ">
+            <xhtml:div
+               style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+              <xhtml:font
+                 style="font-size: 30px">Speech</xhtml:font>
+            </xhtml:div>
+          </xhtml:div>
+        </xhtml:div>
+      </foreignObject>
+      <text
+         x="635"
+         y="99"
+         fill="#000000"
+         font-family="Helvetica"
+         font-size="12px"
+         text-anchor="middle"
+         id="text46">Speech</text>
+    </switch>
+  </g>
+  <switch
+     id="switch60">
+    <g
+       requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"
+       id="g54" />
+    <a
+       transform="translate(0,-5)"
+       xlink:href="https://www.diagrams.net/doc/faq/svg-export-text-problems"
+       target="_blank"
+       id="a58">
+      <text
+         text-anchor="middle"
+         font-size="10px"
+         x="50%"
+         y="100%"
+         id="text56">Viewer does not support full SVG 1.1</text>
+    </a>
+  </switch>
+</svg>

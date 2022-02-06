@@ -1,0 +1,279 @@
+body {
+  font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  font-size: 1.2rem;
+  padding-bottom: 1em;
+  line-height: 1.3;
+  margin: 0;
+  padding: 0;
+}
+
+@media only screen and (min-width: 600px) {
+  .small-only {
+    display: none;
+  }
+}
+
+.main {
+  width: calc(100vw - 2 * 8px);
+  max-width: 1100px;
+  padding: 8px;
+  margin: auto;
+}
+
+h1, h2, h3 {
+  font-weight: 300;
+  line-height: 1.2em;
+  margin: .9em 0;
+  text-align: center;
+}
+
+a:link, a:visited {
+  color: #1367a7;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #208799;
+}
+
+hr {
+  margin: 0;
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+}
+
+.title {
+  font-size: 2.4rem;
+  padding: 15px 0;
+}
+
+.authors {
+  border: 0;
+  text-align: center;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  gap: 10px;
+}
+.authors div {
+  min-width: 200px;
+  flex: 1 0 30%;
+  text-align: center;
+}
+.authors .google::after {
+  content: "1";
+  vertical-align: super;
+  font-size: smaller;
+}
+.authors .deepmind::after {
+  content: "2";
+  vertical-align: super;
+  font-size: smaller;
+}
+.authors .aff {
+  font-size: 90%;
+}
+
+.fig-teaser {
+  display: block;
+  max-width: 400px;
+  margin: auto;
+  padding: 40px 0;
+}
+
+.abs {
+  max-width: 800px;
+  margin: auto;
+  padding: 1em 0;
+}
+
+p {
+  margin: .8em 0;
+  text-align: justify;
+}
+
+.paper {
+  text-align: center;
+  margin: auto;
+  font-size: 20px;
+}
+.paper img {
+  height: 400px;
+  border: 3px solid #1367a7;
+  border-radius: 20px;
+}
+.paper div {
+  display: inline-block;
+  padding: 25px;
+}
+
+.bibtex-popup {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.bibtex-popup-bg {
+  width: 100%;
+  height: 100%;
+}
+.bibtex-content {
+  position: absolute;
+  width: 600px;
+  max-width: 60%;
+  left: 50%;
+  top: 50%;
+  padding: 20px;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  box-shadow: 0 9px 46px 8px rgb(0 0 0 / 14%), 0 11px 15px -7px rgb(0 0 0 / 12%), 0 24px 38px 3px rgb(0 0 0 / 20%);
+}
+.bibtex-content h3 {
+  margin-top: 0;
+  text-align: left;
+}
+
+textarea.citation {
+  width: 100%;
+  height: 200px;
+}
+
+.fig-model {
+  display: block;
+  max-width: 900px;
+  min-width: 600px;
+  margin: auto;
+  padding: 40px 0;
+}
+
+
+.layered-paper-big { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+  box-shadow:
+  0px 0px 1px 1px rgba(0,0,0,0.35), /* The top layer shadow */
+  5px 5px 0 0px #fff, /* The second layer */
+  5px 5px 1px 1px rgba(0,0,0,0.35), /* The second layer shadow */
+  10px 10px 0 0px #fff, /* The third layer */
+  10px 10px 1px 1px rgba(0,0,0,0.35), /* The third layer shadow */
+  15px 15px 0 0px #fff, /* The fourth layer */
+  15px 15px 1px 1px rgba(0,0,0,0.35), /* The fourth layer shadow */
+  20px 20px 0 0px #fff, /* The fifth layer */
+  20px 20px 1px 1px rgba(0,0,0,0.35), /* The fifth layer shadow */
+  25px 25px 0 0px #fff, /* The fifth layer */
+  25px 25px 1px 1px rgba(0,0,0,0.35); /* The fifth layer shadow */
+  margin-left: 10px;
+  margin-right: 45px;
+}
+
+
+.layered-paper { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+  box-shadow:
+  0px 0px 1px 1px rgba(0,0,0,0.35), /* The top layer shadow */
+  5px 5px 0 0px #fff, /* The second layer */
+  5px 5px 1px 1px rgba(0,0,0,0.35), /* The second layer shadow */
+  10px 10px 0 0px #fff, /* The third layer */
+  10px 10px 1px 1px rgba(0,0,0,0.35); /* The third layer shadow */
+  margin-top: 5px;
+  margin-left: 10px;
+  margin-right: 30px;
+  margin-bottom: 5px;
+}
+
+/*********** for RESULTS **********/
+.video {
+    width: 100%;
+    border: 1px solid black;
+}
+.wrapper{
+    display:table;
+    width:auto;
+    position:relative;
+    width:50%;
+}
+.playpause {
+    background-image:url(./button_grey_play.png);
+    background-repeat:no-repeat;
+    width:25%;
+    height:25%;
+    position:absolute;
+    left:0%;
+    right:0%;
+    top:0%;
+    bottom:0%;
+    margin:auto;
+    background-size:contain;
+    background-position: center;
+}
+.scroll-container {
+  overflow-x: auto;
+  width: 100%;
+}
+.results {
+  width: 1100px;
+  padding: 0;
+  margin: 0;
+  border-spacing: 0;
+  box-sizing: border-box;
+}
+.results tr td {
+  text-align: center;
+  padding: 5px;
+}
+.results video {
+  width: 210px;
+  height: auto;
+  border-radius: 6px;
+}
+.results tr th:nth-child(3),
+.results tr td:nth-child(3) {
+  padding-right: 8px;
+  border-right: 1px solid #888;
+}
+.results tr th:nth-child(4),
+.results tr td:nth-child(4) {
+  padding-left: 8px;
+}
+
+/**********************/
+.speaker-swap {
+  width: 1100px;
+  padding: 0;
+  margin: 0;
+  border-spacing: 0;
+  box-sizing: border-box;
+}
+.speaker-swap tr td {
+  text-align: center;
+}
+.speaker-swap tr td:nth-child(3) {
+  padding-right: 10px; /* +6px since green border is 6px wide */
+  border-right: 1px solid #888;
+}
+.speaker-swap tr td:nth-child(4) {
+  padding-left: 4px;
+}
+.bar {
+  border-bottom: 1px solid #888;
+}
+.speaker-swap video {
+  width: 150px;;
+  height: auto;
+  border-radius: 6px;
+}
+.diag video {
+  border: 6px solid #3f9;
+}
+.highlighted {
+  border-radius: 3px;
+  background-color: #3f9;
+  padding: 2px 4px;
+  font-weight: 600;
+}
+

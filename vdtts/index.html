@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>More than Words: In-the-Wild Visually-Driven Prosody for Text-to-Speech</title>
+    <meta property="og:title" content="More than Words: In-the-Wild Visually-Driven Prosody for Text-to-Speech">
+    <meta property="og:type" content="article">
+    <!-- FIXME(shillingford): add final URL -->
+    <meta property="og:url" content="">
+    <meta property="og:image" content="images/vdtts_teaser.webp">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&family=Roboto:wght@300&display=swap" rel="preload" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="main">
+      <h1 class="title">
+        More than Words: In-the-Wild Visually-Driven Prosody for Text-to-Speech
+      </h1>
+      <div class="authors">
+        <div class="google">Michael Hassid</div>
+        <div class="google">Michelle Tadmor Ramanovich</div>
+        <div class="deepmind">Brendan Shillingford</div>
+        <div class="deepmind">Miaosen Wang</div>
+        <div class="google">Ye Jia</div>
+        <div class="google">Tal Remez</div>
+        <div class="aff"><sup>1</sup>Google Research</div>
+        <div class="aff"><sup>2</sup>DeepMind</div>
+      </div>
+
+      <div class="fig-teaser">
+  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="-0.5 -0.5 451 191"><defs/><g><image x="269.86" y="67.52" width="179.11" height="116.76" xlink:href="images/waveform.png" preserveAspectRatio="none"/><path d="M 243.16 113.36 L 267.89 113.36" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 270.86 113.36 L 266.9 115.34 L 267.89 113.36 L 266.9 111.38 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><rect x="175.14" y="96.36" width="68.02" height="34.01" rx="5.1" ry="5.1" fill="#dae8fc" stroke="#6c8ebf" pointer-events="all"/><g transform="translate(-0.5 -0.5)scale(0.5668)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="177%" height="177%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 118px; height: 1px; padding-top: 200px; margin-left: 310px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; "><font style="font-size: 30px">VDTTS</font></div></div></div></foreignObject><text x="369" y="204" fill="#000000" font-size="12px" text-anchor="middle">VDTTS</text></switch></g><image x="15.940000000000001" y="-0.5" width="62.91" height="62.91" xlink:href="images/oneframe.jpg" preserveAspectRatio="none"/><image x="27.27" y="10.84" width="62.91" height="62.91" xlink:href="images/oneframe.jpg" preserveAspectRatio="none"/><image x="38.61" y="22.17" width="62.91" height="62.91" xlink:href="images/oneframe.jpg" preserveAspectRatio="none"/><image x="49.95" y="33.51" width="62.91" height="62.91" xlink:href="images/oneframe.jpg" preserveAspectRatio="none"/><path d="M 124.7 76.8 L 149.92 76.8 L 149.92 104.86 L 171.53 104.86" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 174.51 104.86 L 170.54 106.84 L 171.53 104.86 L 170.54 102.87 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><image x="61.28" y="44.84" width="62.91" height="62.91" xlink:href="images/oneframe.jpg" preserveAspectRatio="none"/><path d="M 124.7 153.04 L 149.92 153.04 L 149.92 121.86 L 171.53 121.86" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 174.51 121.86 L 170.54 123.85 L 171.53 121.86 L 170.54 119.88 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><rect x="0" y="124.7" width="124.7" height="56.68" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)scale(0.5668)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="177%" height="177%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe flex-start; justify-content: unsafe center; width: 218px; height: 1px; padding-top: 227px; margin-left: 1px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; "><span style="color: rgb(0 , 0 , 0) ; font-size: 30px ; font-style: normal ; font-weight: 400 ; letter-spacing: normal ; text-indent: 0px ; text-transform: none ; word-spacing: 0px ; display: inline ; float: none">"it's not an entitlement <br />it's a demand"</span></div></div></div></foreignObject><text x="110" y="239" fill="#000000" font-size="12px" text-anchor="middle">"it's not an entitlement...</text></switch></g><rect x="280.85" y="45.34" width="158.14" height="22.67" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)scale(0.5668)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="177%" height="177%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe flex-start; justify-content: unsafe center; width: 277px; height: 1px; padding-top: 87px; margin-left: 497px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; "><font style="font-size: 30px">Speech</font></div></div></div></foreignObject><text x="635" y="99" fill="#000000" font-size="12px" text-anchor="middle">Speech</text></switch></g></g><switch><g requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"/><a transform="translate(0,-5)" xlink:href="https://www.diagrams.net/doc/faq/svg-export-text-problems" target="_blank"><text text-anchor="middle" font-size="10px" x="50%" y="100%">Viewer does not support full SVG 1.1</text></a></switch></svg>
+      </div>
+
+      <div class="abs">
+        <p>
+          In this paper we present VDTTS, a <b>V</b>isually-<b>D</b>riven <b>T</b>ext-<b>T</b>o-<b>S</b>peech model.
+          Motivated by dubbing, VDTTS takes advantage of video frames as an additional input alongside text, and generates speech that matches the video signal.
+          We demonstrate how this allows VDTTS to, unlike plain TTS models, generate speech that not only has prosodic variations like natural pauses
+          and pitch, but is also synchronized to the input video.
+        </p>
+        <p>
+          Experimentally, we show our model produces well-synchronized outputs, approaching the video-speech synchronization quality of the ground-truth,
+          on several challenging benchmarks including "in-the-wild" content from VoxCeleb2.
+        </p>
+      </div>
+
+      <h1>Paper</h1>
+      <div class="paper">
+        <a href="https://arxiv.org/abs/2111.10139" target="_blank">
+          <img src="images/paper.jpg" alt="first page of paper" />
+        </a>
+      </div>
+      <div class="paper">
+        <div><a href="https://arxiv.org/abs/2111.10139">[arXiv]</a></div>
+      </div>
+
+      <h1>Model</h1>
+      <div class="scroll-container">
+        <div class="fig-model">
+          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="-0.5 -0.5 901 230"><defs/><g><rect x="129.61" y="0.38" width="468.88" height="175.35" rx="26.3" ry="26.3" fill="none" stroke="#000000" stroke-width="1.14" stroke-dasharray="3.4307999999999996 3.4307999999999996" pointer-events="all"/><path d="M 263.03 124.27 L 295.29 97.68" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 297.06 96.22 L 295.68 99.34 L 295.29 97.68 L 293.74 96.99 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><rect x="141.04" y="103.31" width="121.98" height="41.93" rx="6.29" ry="6.29" fill-opacity="0.4" fill="#1ba1e2" stroke="#006eaf" stroke-opacity="0.4" pointer-events="all"/><g transform="translate(-0.5 -0.5)scale(0.3812)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="263%" height="263%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 318px; height: 1px; padding-top: 326px; margin-left: 371px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; color: #ffffff; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; "><font style="font-size: 36px" color="#000000">Text Encoder</font></div></div></div></foreignObject><text x="530" y="330" fill="#ffffff" font-size="12px" text-anchor="middle">Text Encoder</text></switch></g><path d="M 263.03 55.66 L 295.66 93.31" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 297.16 95.04 L 294.01 93.73 L 295.66 93.31 L 296.31 91.73 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><rect x="141.04" y="34.69" width="121.98" height="41.93" rx="6.29" ry="6.29" fill-opacity="0.4" fill="#1ba1e2" stroke="#006eaf" stroke-opacity="0.4" pointer-events="all"/><g transform="translate(-0.5 -0.5)scale(0.3812)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="263%" height="263%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 318px; height: 1px; padding-top: 146px; margin-left: 371px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; "><font style="font-size: 36px">Video Encoder</font></div></div></div></foreignObject><text x="530" y="150" fill="#000000" font-size="12px" text-anchor="middle">Video Encoder</text></switch></g><path d="M 415.13 95.68 Q 415.13 84.25 434.38 84.25 Q 453.63 84.25 453.63 92.54" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 453.63 94.83 L 452.1 91.78 L 453.63 92.54 L 455.15 91.78 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><rect x="297.72" y="69" width="117.41" height="53.37" rx="8.01" ry="8.01" fill-opacity="0.4" fill="#1ba1e2" stroke="#006eaf" stroke-opacity="0.4" pointer-events="all"/><g transform="translate(-0.5 -0.5)scale(0.3812)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="263%" height="263%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 306px; height: 1px; padding-top: 251px; margin-left: 782px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; color: #ffffff; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; "><font style="font-size: 36px" color="#000000">Multi Source Attention</font></div></div></div></foreignObject><text x="935" y="255" fill="#ffffff" font-size="12px" text-anchor="middle">Multi Source Attention</text></switch></g><path d="M 121.98 55.66 L 137.9 55.66" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 140.19 55.66 L 137.14 57.18 L 137.9 55.66 L 137.14 54.13 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><rect x="0" y="34.69" width="121.98" height="41.93" rx="6.29" ry="6.29" fill-opacity="0.4" fill="#e3c800" stroke="#b09500" stroke-opacity="0.4" pointer-events="all"/><g transform="translate(-0.5 -0.5)scale(0.3812)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="263%" height="263%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 318px; height: 1px; padding-top: 146px; margin-left: 1px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; color: #ffffff; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; "><font style="font-size: 36px" color="#000000">Input Frames</font></div></div></div></foreignObject><text x="160" y="150" fill="#ffffff" font-size="12px" text-anchor="middle">Input Frames</text></switch></g><path d="M 121.98 124.27 L 137.9 124.27" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 140.19 124.27 L 137.14 125.8 L 137.9 124.27 L 137.14 122.75 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><rect x="0" y="103.31" width="121.98" height="41.93" rx="6.29" ry="6.29" fill-opacity="0.4" fill="#e3c800" stroke="#b09500" stroke-opacity="0.4" pointer-events="all"/><g transform="translate(-0.5 -0.5)scale(0.3812)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="263%" height="263%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 318px; height: 1px; padding-top: 326px; margin-left: 1px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; color: #ffffff; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; "><font style="font-size: 36px" color="#000000">Input Text</font></div></div></div></foreignObject><text x="160" y="330" fill="#ffffff" font-size="12px" text-anchor="middle">Input Text</text></switch></g><path d="M 453.63 95.68 Q 453.63 107.12 434.38 107.12 Q 415.13 107.12 415.13 98.82" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 415.13 96.53 L 416.65 99.58 L 415.13 98.82 L 413.6 99.58 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><path d="M 579.42 95.68 Q 579.42 95.68 614.4 95.68" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 616.69 95.68 L 613.64 97.21 L 614.4 95.68 L 613.64 94.16 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><rect x="453.63" y="69" width="125.8" height="53.37" rx="8.01" ry="8.01" fill-opacity="0.4" fill="#1ba1e2" stroke="#006eaf" stroke-opacity="0.4" pointer-events="all"/><g transform="translate(-0.5 -0.5)scale(0.3812)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="263%" height="263%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 328px; height: 1px; padding-top: 251px; margin-left: 1191px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; color: #ffffff; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; "><span style="font-size: 36px"><font color="#000000">Spectrogram Decoder</font></span></div></div></div></foreignObject><text x="1355" y="255" fill="#ffffff" font-size="12px" text-anchor="middle">Spectrogram Decoder</text></switch></g><path d="M 743.34 95.68 Q 743.34 95.68 770.7 95.68" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 772.98 95.68 L 769.93 97.21 L 770.7 95.68 L 769.93 94.16 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><rect x="617.54" y="69" width="125.8" height="53.37" rx="8.01" ry="8.01" fill-opacity="0.4" fill="#76608a" stroke="#432d57" stroke-opacity="0.4" pointer-events="all"/><g transform="translate(-0.5 -0.5)scale(0.3812)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="263%" height="263%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 328px; height: 1px; padding-top: 251px; margin-left: 1621px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; color: #ffffff; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; "><span style="font-size: 36px"><font color="#000000">Vocoder</font></span></div></div></div></foreignObject><text x="1785" y="255" fill="#ffffff" font-size="12px" text-anchor="middle">Vocoder</text></switch></g><path d="M 312.58 208.14 L 328.5 208.14" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 330.79 208.14 L 327.74 209.66 L 328.5 208.14 L 327.74 206.61 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><rect x="190.6" y="187.17" width="121.98" height="41.93" rx="6.29" ry="6.29" fill-opacity="0.4" fill="#e3c800" stroke="#b09500" stroke-opacity="0.4" pointer-events="all"/><g transform="translate(-0.5 -0.5)scale(0.3812)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="263%" height="263%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 318px; height: 1px; padding-top: 546px; margin-left: 501px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; "><font style="font-size: 36px">Speaker ID</font></div></div></div></foreignObject><text x="660" y="550" fill="#000000" font-size="12px" text-anchor="middle">Speaker ID</text></switch></g><path d="M 453.63 208.14 L 516.53 208.14 L 516.53 125.5" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 516.53 123.22 L 518.05 126.27 L 516.53 125.5 L 515 126.27 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><rect x="331.64" y="187.17" width="121.98" height="41.93" rx="6.29" ry="6.29" fill-opacity="0.4" fill="#76608a" stroke="#432d57" stroke-opacity="0.4" pointer-events="all"/><g transform="translate(-0.5 -0.5)scale(0.3812)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="263%" height="263%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 318px; height: 1px; padding-top: 546px; margin-left: 871px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; "><font style="font-size: 36px">Speaker Encoder</font></div></div></div></foreignObject><text x="1030" y="550" fill="#000000" font-size="12px" text-anchor="middle">Speaker Encoder</text></switch></g><rect x="773.84" y="69" width="125.8" height="53.37" rx="8.01" ry="8.01" fill-opacity="0.4" fill="#fa6800" stroke="#c73500" stroke-opacity="0.4" pointer-events="all"/><g transform="translate(-0.5 -0.5)scale(0.3812)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="263%" height="263%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 328px; height: 1px; padding-top: 251px; margin-left: 2031px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div><span style="font-size: 36px"><font color="#000000">Generated Speech</font></span></div></div></div></foreignObject><text x="2195" y="255" fill="#ffffff" font-size="12px" text-anchor="middle">Generated Speech</text></switch></g><rect x="465.06" y="15.63" width="121.98" height="34.31" rx="5.15" ry="5.15" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)scale(0.3812)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="263%" height="263%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 318px; height: 1px; padding-top: 86px; margin-left: 1221px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; "><font style="font-size: 48px"><b>VDTTS</b></font></div></div></div></foreignObject><text x="1380" y="90" fill="#000000" font-size="12px" text-anchor="middle">VDTTS</text></switch></g></g><switch><g requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"/><a transform="translate(0,-5)" xlink:href="https://www.diagrams.net/doc/faq/svg-export-text-problems" target="_blank"><text text-anchor="middle" font-size="10px" x="50%" y="100%">Viewer does not support full SVG 1.1</text></a></switch></svg>
+        </div>
+      </div>
+
+      <h1>Model comparison samples</h1>
+      <p>
+        This section and the following section show samples from the VDTTS model and several
+        baselines.
+      </p>
+      <p>
+        The first video column labeled <b>Ground-truth video</b> displays the original
+        video clip. The following column, <b>VDTTS</b>, displays the audio predicted using both the
+        video frames and the text as input. The following two columns display the lack of sync
+        exhibited by models that use only video frames (<b>VDTTS video-only</b>), or only text
+        (<b>TTS text-only</b>).
+      </p>
+      <p>
+        Click on a video to play.
+        <span class="small-only">On small screens, scroll sideways to see the whole table.</span>
+      </p>
+      <div class="scroll-container">
+        <table class="results">
+          <tr>
+            <th>Transcript</th>
+            <th>Speaker ID</th>
+            <th>Ground-truth video</th>
+            <th>VDTTS</th>
+            <th>VDTTS video-only<br>(no text input)</th>
+            <th>TTS text-only<br>(no video input)</th>
+          </tr>
+          <tr>
+            <td>of space for people to make their own judgments and to come to their own</td>
+            <td>0</td>
+            <td>
+              <div class="wrapper">
+                <video class="video">
+                  <source src="./model_comparison/ground_truth_denoised_0.mp4" type="video/mp4" />
+                </video>
+                <div class="playpause"></div>
+              </div>
+            </td>
+            <td>
+              <div class="wrapper">
+                <video class="video">
+                  <source src="./model_comparison/pred_both_0.mp4" type="video/mp4" />
+                </video>
+                <div class="playpause"></div>
+              </div>
+            </td>
+            <td>
+              <div class="wrapper">
+                <video class="video">
+                  <source src="./model_comparison/pred_video_only_0.mp4" type="video/mp4" />
+                </video>
+                <div class="playpause"></div>
+              </div>
+            </td>
+            <td>
+              <div class="wrapper">
+                <video class="video">
+                  <source src="./model_comparison/pred_both_tts_base_0.mp4" type="video/mp4" />
+                </video>
+                <div class="playpause"></div>
+              </div>              
+            </td>
+          </tr>
+          <tr>
+            <td>absolutely love dancing i have no dance experience whatsoever but as that</td>
+            <td>1</td>
+            <td>
+              <div class="wrapper">
+                <video class="video">
+                  <source src="./model_comparison/ground_truth_denoised_1.mp4" type="video/mp4" />
+                </video>
+                <div class="playpause"></div>
+              </div>   
+            </td>
+            <td>
+              <div class="wrapper">
+                <video class="video">
+                  <source src="./model_comparison/pred_both_1.mp4" type="video/mp4" />
+                </video>
+                <div class="playpause"></div>
+              </div>   
+            </td>
+            <td>
+              <div class="wrapper">
+                <video class="video">
+                  <source src="./model_comparison/pred_video_only_1.mp4" type="video/mp4" />
+                </video>
+                <div class="playpause"></div>
+              </div>   
+            </td>
+            <td>
+              <div class="wrapper">
+                <video class="video">
+                  <source src="./model_comparison/pred_both_tts_base_1.mp4" type="video/mp4" />
+                </video>
+                <div class="playpause"></div>
+              </div>   
+            </td>
+          </tr>
+          <tr>
+            <td>making money and so some guy went and bought that girl</td>
+            <td>2</td>
+            <td>
+              <div class="wrapper">
+                <video class="video">
+                  <source src="./model_comparison/ground_truth_denoised_2.mp4" type="video/mp4" />
+                </video>
+                <div class="playpause"></div>
+              </div>   
+            </td>
+            <td>
+              <div class="wrapper">
+                <video class="video">
+                  <source src="./model_comparison/pred_both_2.mp4" type="video/mp4" />
+                </video>
+                <div class="playpause"></div>
+              </div>   
+            </td>
+            <td>
+              <div class="wrapper">
+                <video class="video">
+                  <source src="./model_comparison/pred_video_only_2.mp4" type="video/mp4" />
+                </video>
+                <div class="playpause"></div>
+              </div>   
+            </td>
+            <td>
+              <div class="wrapper">
+                <video class="video">
+                  <source src="./model_comparison/pred_both_tts_base_2.mp4" type="video/mp4" />
+                </video>
+                <div class="playpause"></div>
+              </div>   
+            </td>
+          </tr>
+          <tr>
+            <td>on a over christmas and we had a guide because its really treasure</td>
+            <td>3</td>
+            <td>
+              <div class="wrapper">
+                <video class="video">
+                  <source src="./model_comparison/ground_truth_denoised_3.mp4" type="video/mp4" />
+                </video>
+                <div class="playpause"></div>
+              </div>   
+            </td>
+            <td>
+              <div class="wrapper">
+                <video class="video">
+                  <source src="./model_comparison/pred_both_3.mp4" type="video/mp4" />
+                </video>
+                <div class="playpause"></div>
+              </div>   
+            </td>
+            <td>
+              <div class="wrapper">
+                <video class="video">
+                  <source src="./model_comparison/pred_video_only_3.mp4" type="video/mp4" />
+                </video>
+                <div class="playpause"></div>
+              </div>   
+            </td>
+            <td>
+              <div class="wrapper">
+                <video class="video">
+                  <source src="./model_comparison/pred_both_tts_base_3.mp4" type="video/mp4" />
+                </video>
+                <div class="playpause"></div>
+              </div>   
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <h1>Speaker swap samples</h1>
+      <p>
+        These samples show what happens when a different speaker embedding from the original speaker is provided to the model.
+      </p>
+      <p>
+        The <span class="highlighted">highlighted</span> diagonal represents the videos for which the
+        identity represented by the speaker embedding matches the speaker in the video frames.
+      </p>
+      <p>
+        Presented are random examples of timing and prosody recovery which are disentangled from the speaker's voice. In each row, audio is synthesized given video and text from one input example and a speaker voice from another, and is presented here only to demonstrate that the prosody recovered is the product of the video signal rather than the voice input. The model is not intended to be used to switch speaker voices/gender etc.   
+      </p>
+      <p>
+        <span class="small-only">On small screens, scroll sideways to see the whole table.</span>
+      </p>
+      <div class="scroll-container">
+        <table class="speaker-swap">
+          <tr>
+            <th colspan="3"></th>
+            <th class="bar" colspan="5">VDTTS using:</th>
+          </tr>
+          <tr>
+            <th>Transcript</th>
+            <th>Speaker ID</th>
+            <th>Ground-truth video</th>
+            <th>speaker 0's embedding</th>
+            <th>speaker 1's embedding</th>
+            <th>speaker 2's embedding</th>
+            <th>speaker 3's embedding</th>
+          </tr>
+          <tr>
+            <td>which is the mc donalds could really become a giant company if they were a real estate company</td>
+            <td>0</td>
+            <td>
+              <div class="wrapper">
+                <video class="video">
+                  <source src="./speaker_swap/ground_truth_denoised_0.mp4" type="video/mp4" />
+                </video>
+                <div class="playpause"></div>
+              </div>   
+            </td>
+            <td class="diag">
+              <div class="wrapper">
+                <video class="video">
+                  <source src="./speaker_swap/pred_both_dvec_zero_0.mp4" type="video/mp4" />
+                </video>
+                <div class="playpause"></div>
+              </div>   
+            </td>
+            <td>
+              <div class="wrapper">
+                <video class="video">
+                  <source src="./speaker_swap/pred_both_dvec_one_0.mp4" type="video/mp4" />
+                </video>
+                <div class="playpause"></div>
+              </div>   
+            </td>
+            <td>
+              <div class="wrapper">
+                <video class="video">
+                  <source src="./speaker_swap/pred_both_dvec_two_0.mp4" type="video/mp4" />
+                </video>
+                <div class="playpause"></div>
+              </div>   
+            </td>
+            <td>
+              <div class="wrapper">
+                <video class="video">
+                  <source src="./speaker_swap/pred_both_dvec_three_0.mp4" type="video/mp4" />
+                </video>
+                <div class="playpause"></div>
+              </div>   
+            </td>
+          </tr>
+          <tr>
+            <td>history together an emotional history together and i know the facts</td>
+            <td>1</td>
+            <td>
+              <div class="wrapper">
+                <video class="video">
+                  <source src="./speaker_swap/ground_truth_denoised_1.mp4" type="video/mp4" />
+                </video>
+                <div class="playpause"></div>
+              </div>   
+            </td>
+            <td>
+              <div class="wrapper">
+                <video class="video">
+                  <source src="./speaker_swap/pred_both_dvec_zero_1.mp4" type="video/mp4" />
+                </video>
+                <div class="playpause"></div>
+              </div>   
+            </td>
+            <td class="diag">
+              <div class="wrapper">
+                <video class="video">
+                  <source src="./speaker_swap/pred_both_dvec_one_1.mp4" type="video/mp4" />
+                </video>
+                <div class="playpause"></div>
+              </div>   
+            </td>
+            <td>
+              <div class="wrapper">
+                <video class="video">
+                  <source src="./speaker_swap/pred_both_dvec_two_1.mp4" type="video/mp4" />
+                </video>
+                <div class="playpause"></div>
+              </div>   
+            </td>
+            <td>
+              <div class="wrapper">
+                <video class="video">
+                  <source src="./speaker_swap/pred_both_dvec_three_1.mp4" type="video/mp4" />
+                </video>
+                <div class="playpause"></div>
+              </div>   
+            </td>
+          </tr>
+          <tr>
+            <td>there i did what was i going to do move to spain move my whole life over</td>
+            <td>2</td>
+            <td>
+              <div class="wrapper">
+                <video class="video">
+                  <source src="./speaker_swap/ground_truth_denoised_2.mp4" type="video/mp4" />
+                </video>
+                <div class="playpause"></div>
+              </div>   
+            </td>
+            <td>
+              <div class="wrapper">
+                <video class="video">
+                  <source src="./speaker_swap/pred_both_dvec_zero_2.mp4" type="video/mp4" />
+                </video>
+                <div class="playpause"></div>
+              </div>   
+            </td>
+            <td>
+              <div class="wrapper">
+                <video class="video">
+                  <source src="./speaker_swap/pred_both_dvec_one_2.mp4" type="video/mp4" />
+                </video>
+                <div class="playpause"></div>
+              </div>   
+            </td>
+            <td class="diag">
+              <div class="wrapper">
+                <video class="video">
+                  <source src="./speaker_swap/pred_both_dvec_two_2.mp4" type="video/mp4" />
+                </video>
+                <div class="playpause"></div>
+              </div>   
+            </td>
+            <td>
+              <div class="wrapper">
+                <video class="video">
+                  <source src="./speaker_swap/pred_both_dvec_three_2.mp4" type="video/mp4" />
+                </video>
+                <div class="playpause"></div>
+              </div>   
+            </td>
+          </tr>
+          <tr>
+            <td>trade support systems on the other hand its not an entitlement its a demand to end slavery</td>
+            <td>3</td>
+            <td>
+              <div class="wrapper">
+                <video class="video">
+                  <source src="./speaker_swap/ground_truth_denoised_3.mp4" type="video/mp4" />
+                </video>
+                <div class="playpause"></div>
+              </div>   
+            </td>
+            <td>
+              <div class="wrapper">
+                <video class="video">
+                  <source src="./speaker_swap/pred_both_dvec_zero_3.mp4" type="video/mp4" />
+                </video>
+                <div class="playpause"></div>
+              </div>   
+            </td>
+            <td>
+              <div class="wrapper">
+                <video class="video">
+                  <source src="./speaker_swap/pred_both_dvec_one_3.mp4" type="video/mp4" />
+                </video>
+                <div class="playpause"></div>
+              </div>   
+            </td>
+            <td>
+              <div class="wrapper">
+                <video class="video">
+                  <source src="./speaker_swap/pred_both_dvec_two_3.mp4" type="video/mp4" />
+                </video>
+                <div class="playpause"></div>
+              </div>   
+            </td>
+            <td class="diag">
+              <div class="wrapper">
+                <video class="video">
+                  <source src="./speaker_swap/pred_both_dvec_three_3.mp4" type="video/mp4" />
+                </video>
+                <div class="playpause"></div>
+              </div>   
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>   <script>
+$('.video').parent().click(function () {
+  if($(this).children(".video").get(0).paused){        $(this).children(".video").get(0).play();   $(this).children(".playpause").fadeOut();
+    }else{       $(this).children(".video").get(0).pause();
+  $(this).children(".playpause").fadeIn();
+    }
+});
+    </script>
+  </body>
+</html>
+
