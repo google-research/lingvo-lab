@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Audio samples from "Translatotron 2: Robust direct speech-to-speech translation"</title>
+    <title>Audio samples from "Translatotron 2: High-quality direct speech-to-speech translation with voice preservation"</title>
 
     <style>
      h1, h2, h3, p {padding: 0 8px;}
@@ -29,11 +29,13 @@
         "but when you are an artist it really is for the most part you really want to create",
         "but when you are an artist it really is the most part you really want to create",
         "but when you are an artist really on the most part he really wants to create",
-        "but when you're an artist that really is those parts you really want to"],
+        "but when you're an artist that really is those parts you really want to",
+        "but when you're an artist it really is your biggest part that i really want to create"],
        // 2.
        ["10681841461943939369",
         "Lo sé, son tan hermosos.",
         "I know, they're so beautiful.",
+        "i know they're so beautiful",
         "i know they're so beautiful",
         "i know they're so beautiful",
         "i know they're so beautiful",
@@ -45,7 +47,8 @@
         "i'm not going to let you die i'm a doctor",
         "i'm not going to let you die i'm a doctor",
         "i'm not going to let him die i'm the anna",
-        "i'm not going to let you die i am sorry"],
+        "i'm not going to let you die i am sorry",
+        "i'm not going to let you die i'm eddie"],
        // 4.
        ["10683378730756247646",
         "Así que, una vez más, es una selva y si quieres sobrevivir",
@@ -53,7 +56,8 @@
         "so once again it's a jungle and if you want to survive",
         "so once again it's a jumble and if you want to survive",
         "so once again it's a junction and if you want to survive",
-        "so once again it is in general walk and that they want to survive"],
+        "so once again it is in general walk and that they want to survive",
+        "so once again it's a jungle and if you want to survive"],
        // 5.
        ["10684330814076754395",
         "Bueno, estás cansado, tal vez lo dejaste. No, definitivamente tenía mi cartera.",
@@ -61,7 +65,8 @@
         "well tired maybe you left it no i definitely had my wallet",
         "well he's tired maybe you want it no i definitely hadn't i wanted",
         "well you're tired maybe you left him i definitely knew myself as my wallet",
-        "well he said charlotte"],
+        "well he said charlotte",
+        "well you're tired maybe you gave it too no i definitely had a letter"],
      ];
 
      var speaker_turn_samples = [
@@ -123,9 +128,10 @@
          html += audio_cell("conv/t2_trans", conv_samples[i][0]);
          html += audio_cell("conv/t1", conv_samples[i][0]);
          html += audio_cell("conv/t1_trans", conv_samples[i][0]);
+         html += audio_cell("conv/cscd", conv_samples[i][0]);
          html += "</tr><tr class='transcript'>"
          html += "<td></td>";
-         for (var j = 1; j < 7; ++j) {
+         for (var j = 1; j < 8; ++j) {
            html += "<td>" + conv_samples[i][j] + "</td>";
          }
          html += "</tr>"
@@ -282,28 +288,26 @@
   <body>
     <div>
 
-      <h1>Audio samples from "Translatotron 2: Robust direct speech-to-speech translation"</h1>
+      <h1>Audio samples from "Translatotron 2: High-quality direct speech-to-speech translation with voice preservation"</h1>
 
       <p><b>Paper:</b> <a href="https://arxiv.org/abs/2107.08661">arXiv</a></p>
       <p><b>Authors:</b> Ye Jia, Michelle Tadmor Ramanovich, Tal Remez, Roi Pomerantz.</p>
       <p><b>Abstract:</b>
-        We present <i>Translatotron 2</i>, a neural direct speech-to-speech translation model that can be trained end-to-end. Translatotron 2 consists of a speech encoder, a phoneme decoder, a mel-spectrogram synthesizer, and an attention module that connects all the previous three components. Experimental results suggest that Translatotron 2 outperforms the original Translatotron by a large margin in terms of translation quality and predicted speech naturalness, and drastically improves the robustness of the predicted speech by mitigating over-generation, such as babbling or long pause.
-
-        We also propose a new method for retaining the source speaker's voice in the translated speech. The trained model is restricted to retain the source speaker's voice, and unlike the original Translatotron, it is not able to generate speech in a different speaker's voice, making the model more robust for production deployment, by mitigating potential misuse for creating spoofing audio artifacts. When the new method is used together with a simple concatenation-based data augmentation, the trained Translatotron 2 model is able to retain each speaker's voice for input with speaker turns.
+        We present <i>Translatotron 2</i>, a neural direct speech-to-speech translation model that can be trained end-to-end. Translatotron 2 consists of a speech encoder, a linguistic decoder, an acoustic synthesizer, and a single attention module that connects them together. Experimental results on three datasets consistently show that Translatotron 2 outperforms the original Translatotron by a large margin on both translation quality (up to +15.5 BLEU) and speech generation quality, and approaches the same of cascade systems. In addition, we propose a simple method for preserving speakers' voices from the source speech to the translation speech in a different language. Unlike existing approaches, the proposed method is able to preserve each speaker's voice on speaker turns without requiring for speaker segmentation. Furthermore, compared to existing approaches, it better preserves speaker's privacy and mitigates potential misuse of voice cloning for creating spoofing audio artifacts.
       </p>
 
       <h3>Contents</h3>
       <ul>
-        <li><a href="#conversational">Spanish-to-English (on Conversational corpus)</a></li>
-        <li><a href="#speaker-turns">Voice retaining with speaker turns (on Conversational corpus)</a></li>
-        <li><a href="#covost">Multilingual X-to-English (on CoVoST 2 corpus)</a></li>
+        <li><a href="#conversational">Spanish-to-English (on Conversational dataset)</a></li>
+        <li><a href="#speaker-turns">Voice preservation on speaker turns (on Conversational dataset)</a></li>
+        <li><a href="#covost">Multilingual X-to-English (on CoVoST 2 dataset)</a></li>
       </ul>
 
-      <h2 id="conversational">Spanish-to-English (on Conversational corpus)</h2>
+      <h2 id="conversational">Spanish-to-English (on Conversational dataset)</h2>
 
-      <p><i>These audio samples were randomly sampled from the evaluation set in Table 2 and Table 3 in the paper. The S2ST models were trained on the Conversational Spanish-to-English dataset. Each S2ST model has one variant for outputting in a canonical female speaker's voice, and another variant for retaining the source speaker's voice in the translated speech.</i></p>
+      <p><i>These audio samples were randomly sampled from the evaluation corresponding to Table 2 and Table 3 in the paper. The S2ST models were trained on the Conversational Spanish-to-English dataset. For both Translatotron 2 and Translatotron, we include one variant for outputting in a canonical female speaker's voice, and another variant for preserving the source speaker's voice in the translation speech.</i></p>
 
-      <p><i>Reference audios were synthesized with a TTS model with crosslingual voice transfer capacity (see Section 4.1 in the paper). Transcripts for the sources and references are ground truth from the corpus; transcripts for the model predictions were transcribed by an ASR model used for evaluation  (see Section 5.1 in the paper).</i></p>
+      <p><i>Reference audios were synthesized using a TTS model with zero-shot crosslingual voice transfer capacity (see Section 4.1 in the paper). Transcripts for the source and reference are ground truth from the dataset; transcripts for the model prediction were transcribed by an ASR model used for evaluation  (see Section 5.1 in the paper).</i></p>
 
       <p><i>In some cases (e.g. group 2), the TTS-synthesized references (and training targets) fail to retain the source speakers' voices. As a result, the trained S2ST models also make similar mistakes. See also the samples in the next section.</i></p>
 
@@ -312,25 +316,26 @@
 	      <col span="2" />
 	      <col span="2" style="background-color: #FCFCFC;" />
 	      <col span="2" style="background-color: #F9F9F9;" />
+        <col span="1" style="background-color: #F6F6F6;" />
         <thead>
           <tr>
-            <th></th><th colspan="2">Ground truth</th><th colspan="2">Translatotron 2</th><th colspan="2">Translatotron</th>
+            <th></th><th colspan="2">Ground truth</th><th colspan="2">Translatotron 2</th><th colspan="2">Translatotron</th><th>Cascade (ST &rarr; TTS)</th>
           </tr>
           <tr>
-            <th></th><th>Source (Spanish)</th><th>Reference (English)</th><th>Canonical voice</th><th>Voice retaining</th><th>Canonical voice</th><th>Voice retaining</th>
+            <th></th><th>Source (Spanish)</th><th>Reference (English)</th><th>Canonical voice</th><th>Voice preserved</th><th>Canonical voice</th><th>Voice preserved</th><th>Canonical voice</th>
           </tr>
         </thead>
         <tbody></tbody>
       </table>
 
-      <h2 id="speaker-turns">Voice retaining with speaker turns (on Conversational corpus)</h2>
+      <h2 id="speaker-turns">Voice preservation on speaker turns (on Conversational dataset)</h2>
 
-      <p><i>These audio samples were randomly sampled from the evaluation sets in Table 4, corresponding to Section 4.2 and 5.4.1 in the paper.</i></p>
-      <p><i>The source audios are the connetation of randomly sampled pairs of human recordings; the reference audios are the concatenation of the corresponding TTS synthesized reference audios. The model predictions are the direct outputs from the models on the concatenated source input, without further post-processing. The transcripts for the source and reference are concatenation of the ground truth from the corpus (each segment in a pair of quotation marks); the transcripts on the model predictions were transcribed by an ASR model used for evaluation.</i></p>
+      <p><i>These audio samples were randomly sampled from the evaluation in Table 4, corresponding to Section 4.2 and Section 5.4.1 in the paper.</i></p>
+      <p><i>The source audios are the concatenation of randomly sampled pairs of human recordings; the reference audios are the concatenation of the corresponding TTS synthesized reference audios. The model predictions are the direct outputs from the models on the concatenated source input, without further post-processing. The transcripts for the source and reference are concatenation of the ground truth from the dataset (each segment in a pair of quotation marks); the transcripts on the model predictions were transcribed by an ASR model used for evaluation.</i></p>
 
-      <p><i>These samples show that when the concatenation augmentation (concat aug) is used during training, both Translatotron 2 and Translatotron are able to retain each speaker's voice on inputs with speaker turns; in contrast, when the concatenation augmentation is not used, the predicted audio is typically in one input speaker's voice, and some times have trouble on handling the entire input for translation (e.g. group 3 and 4). In either case, the prediction from Translatotron 2 is sigicantly more natural, more fluent, and more complete than the same from Translatotron.</i></p>
+      <p><i>These samples show that when ConcatAug is used during training, both Translatotron 2 and Translatotron are able to preserve each speaker's voice on inputs with speaker turns; in contrast, when ConcatAug is not used, the predicted audio is typically in one input speaker's voice, and some times have trouble on handling the entire input for translation (e.g. group 3 and 4). In either case, the prediction from Translatotron 2 is significantly more natural, more fluent, and more complete than the same from Translatotron.</i></p>
 
-      <p><i>It is interesting that in group 5, despite that the TTS synthesized reference makes mistake on the first speaker's voice (incorrect gender), Translatotron 2 (w/ concat aug.) is able to predict in voices more similar to the source (correct gender).</i></p>
+      <p><i>It is interesting that in group 5, despite that the TTS synthesized reference makes mistake on the first speaker's voice (incorrect gender), Translatotron 2 (w/ ConcatAug) is able to predict in voices more similar to the source (correct gender).</i></p>
 
       <table id="speaker-turn-table">
 	      <col/>
@@ -339,17 +344,17 @@
 	      <col span="2" style="background-color: #F9F9F9;" />
         <thead>
           <tr>
-            <th></th><th>Source (Spanish)</th><th>Reference (English)</th><th>Translatotron 2 (w/ concat aug)</th><th>Translatotron 2</th><th>Translatotron (w/ concat aug)</th><th>Translatotron</th>
+            <th></th><th>Source (Spanish)</th><th>Reference (English)</th><th>Translatotron 2 (w/ ConcatAug)</th><th>Translatotron 2</th><th>Translatotron (w/ ConcatAug)</th><th>Translatotron</th>
           </tr>
         </thead>
         <tbody></tbody>
       </table>
 
-      <h2 id="covost">Multilingual X-to-English (on CoVoST 2 corpus)</h2>
+      <h2 id="covost">Multilingual X-to-English (on CoVoST 2 dataset)</h2>
 
-      <p><i>These audio samples were randomly sampled from the evaluation set in Table 5, corresponding to Section 5.5 in the paper. The S2ST models were trained on CoVoST 2 dataset, and are able to translate French, German, Spanish and Catalan speech into English speech in a canonical voice.</i></p>
+      <p><i>These audio samples were randomly sampled from the evaluation in Table 5, corresponding to Section 5.5 in the paper. The S2ST models were trained on the dataset derived from CoVoST 2, and are able to translate French, German, Spanish and Catalan speech into English speech in a canonical voice.</i></p>
 
-      <p><i>Reference audios were synthesized with a TTS model. Transcripts for the sources and references are ground truth from the corpus; transcripts for the model predictions were transcribed by an ASR model used for evaluation.</i></p>
+      <p><i>Reference audios were synthesized with a TTS model. Transcripts for the sources and references are ground truth from the dataset; transcripts for the model predictions were transcribed by an ASR model used for evaluation.</i></p>
 
       <table id="covost-table">
 	      <col/>
