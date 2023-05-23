@@ -1,0 +1,411 @@
+
+<html>
+
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="stylesheet" type="text/css" href="cid:css-99d622a7-b09d-4ecb-b6de-0cda4c5d89cf@mhtml.blink" />
+
+<title>Translatotron 3: Speech to Speech Translation with Monolingual Data</title>
+    <meta property="og:title" content="Translatotron 3: Speech to Speech Translation with Monolingual Data">
+    <meta property="og:type" content="article">
+    <!-- FIXME(shillingford): add final URL -->
+    <meta property="og:url" content="">
+    <!--meta property="og:image" content="images/vdtts_teaser.webp"-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&family=Roboto:wght@300&display=swap" rel="preload" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&family=Roboto:wght@300&display=swap" rel="stylesheet">
+  
+
+ <link rel="stylesheet" href="style.css">
+
+  </head>
+
+  <body>
+    <div class="main">
+
+      <h1>Translatotron 3: Speech to Speech Translation with Monolingual Data</h1>
+
+      <div class="authors">
+        <div class="google">Eliya Nachmani</div>
+        <div class="google">Alon Levkovitch</div>
+        <div class="google">Chulayuth Asawaroengchai</div>
+        <div class="deepmind">Yifan Ding</div>
+        <div class="deepmind">Heiga Zen</div>
+        <div class="google">Michelle Tadmor Ramanovich</div>
+        <div class="aff"><sup>1</sup>Google Research</div>
+        <div class="aff"><sup>2</sup>Google DeepMind</div>
+      </div>
+
+      <div class="fig-teaser">
+	<!-- TODO ADD TEASER IMG -->
+      </div>
+
+	<div class="abs">
+      <p>
+        This paper presents Translatotron 3, a novel approach to train a direct speech-to-speech translation model from monolingual datasets only in a fully unsupervised manner. Translatotron 3 combines masked autoencoder, unsupervised embedding mapping, and back-translation to achieve this goal. Experimental results in speech-to-speech translation tasks between Spanish and English using synthetic datasets show that Translatotron 3 outperforms a baseline cascade system, reporting 10.5 BLEU points improvement on the synthesized Unpaired-Conversational dataset. Furthermore, for real speech dataset, Common Voice 11, Translatotron 3 demonstrate its ability to transfer para-/non-linguistic characteristics of the source speech.
+      </p>
+	</div>
+
+      <h1>Paper</h1>
+      <div class="paper">
+	<!-- TODO ADD arXiv link -->
+        <a href="https://arxiv.org/TODO" target="_blank">
+          <img src="images/paper.png" alt="first page of paper" />
+        </a>
+      </div>
+      <div class="paper">
+	<!-- TODO ADD arXiv link -->
+        <div><a href="https://arxiv.org/TODO">[arXiv]</a></div>
+      </div>
+
+      <h1>Model</h1>
+      <div class="scroll-container">
+        <div class="fig-model">
+  	<img src="images/Recon.png" alt="Phase 1 uses the reconstruction loss via the auto-encoding path.">
+	<img src="images/BT.png" alt="Phase 2 employs the reconstruction loss via back-translation.">
+        </div>
+<p>
+The two training phases in the proposed approach. (1) Phase 1 uses the reconstruction loss via the auto-encoding path. (2) Phase 2 employs the reconstruction loss via back-translation.
+</p>
+      </div>
+
+      <h3>Model Comparison Samples</h3>
+      <p>
+        <li><a href="#ConversationalSTE">Spanish-to-English (on Conversational dataset)</a>
+            
+        </li>
+        <li><a href="#ConversationalETS">English-to-Spanish (on Conversational dataset)</a>
+        </li>
+        <li><a href="#CommonVoice11SynthesizedSTE">Spanish-to-English (on CommonVoice11 Synthesized dataset)</a>
+        </li>
+        <li><a href="#CommonVoice11SynthesizedETS">English-to-Spanish (on CommonVoice11 Synthesized dataset)</a>
+        </li>
+        <li><a href="#CommonVoice11RealETS">Spanish-to-English (on CommonVoice11 dataset)</a>
+        </li>
+      </p>
+
+      <p>
+        This section and the following sections show samples from the Translatotron 3 model trained unsupervised, without any parallel data.
+      </p>
+      <p>
+        The first audio column labeled <highlighted>Source</highlighted> plays the original audio clip with the original speaker. The following column, <highlighted>Reference</highlighted>, plays the synthesized audio translation of source with a random speaker. The following column play <highlighted>Predicted</highlighted> plays the Translatotron 3 model prediction: translated content by speaker preserved from source. The speaker is preserved without speaker modeling or supervision.
+      </p>
+      <a id="ConversationalSTE"><h2 >Spanish-to-English (on Conversational dataset)</h2></a>
+        <div class="table-container">
+        <table class="sample-table" id="conversational-table">
+      	      <colgroup><col>
+              </colgroup><thead>
+                <tr>
+                  <th colspan="1">Source (Spanish)</th><th colspan="1">Reference (English)</th><th colspan="1">Predicted (English), Source speaker</th>
+                </tr>
+              </thead>
+              
+              <tbody>
+                <tr class="audio">
+                  <td><audio controls=""><source src="examples/conv_es_en/1/src.wav" type="audio/wav"></td>
+                  <td><audio controls=""><source src="examples/conv_es_en/1/ref.wav" type="audio/wav"></td>
+                  <td><audio controls=""><source src="examples/conv_es_en/1/pred.wav" type="audio/wav"></td>
+                </tr>
+                <tr class="transcript">
+                  <td>Creación de nuevos escenarios legales.</td>
+                  <td>Creation of new legal scenarios.</td>
+                  <td>Creation of new legal scenario.</td>
+                </tr>
+                <tr class="audio">
+                  <td><audio controls=""><source src="examples/conv_es_en/2/src.wav" type"audio/wav"></td>
+                  <td><audio controls=""><source src="examples/conv_es_en/2/ref.wav" type="audio/wav"></td>
+                  <td><audio controls=""><source src="examples/conv_es_en/2/pred.wav" type="audio/wav"></td>
+                </tr>
+                <tr class="transcript">
+                  <td>Sí, creo que puedo hacer eso.</td>
+                  <td>Yeah! Yeah, I think I can do that.</td>
+                  <td>Yeah i think i can do this.</td>
+                </tr>
+                <tr class="audio">
+                  <td><audio controls=""><source src="examples/conv_es_en/3/src.wav" type="audio/wav"></td>
+                  <td><audio controls=""><source src="examples/conv_es_en/3/ref.wav" type="audio/wav"></td>
+                  <td><audio controls=""><source src="examples/conv_es_en/3/pred.wav" type="audio/wav"></td>
+                </tr>
+                <tr class="transcript">
+                  <td>Ver toda la discografía de Eliseo Parra.</td>
+                  <td>See the whole discography of Eliseo Parra.</td>
+                  <td>See the whole discography of Arteropoly.</td>
+                </tr>
+                <tr class="audio">
+                  <td><audio controls=""><source src="examples/conv_es_en/4/src.wav" type"audio/wav"></td>
+                  <td><audio controls=""><source src="examples/conv_es_en/4/ref.wav" type="audio/wav"></td>
+                  <td><audio controls=""><source src="examples/conv_es_en/4/pred.wav" type="audio/wav"></td>
+                </tr>
+                <tr class="transcript">
+                  <td>Sellos relacionados con Richard Sjöberg.</td>
+                  <td>Labels related to Richard Sjöberg.</td>
+                  <td>Labels related to Richard Carlyin.</td>
+                </tr>
+                <tr class="audio">
+                  <td><audio controls=""><source src="examples/conv_es_en/5/src.wav" type="audio/wav"></td>
+                  <td><audio controls=""><source src="examples/conv_es_en/5/ref.wav" type="audio/wav"></td>
+                  <td><audio controls=""><source src="examples/conv_es_en/5/pred.wav" type="audio/wav"></td>
+                </tr>
+                <tr class="transcript">
+                  <td>UTR con un par de excepciones.</td>
+                  <td>UTR with a couple of exceptions.</td>
+                  <td>MS with a couple of exceptions.</td>
+                </tr>
+              </tbody>
+              
+        </table>
+        </div>
+      <a id="ConversationalETS"><h2>English-to-Spanish (on Conversational dataset) </h2></a>
+        <div class="table-container">
+        <table class="sample-table" id="conversational-table">
+      	      <colgroup><col>
+              </colgroup><thead>
+                <tr>
+                  <th colspan="1">Source (English)</th><th colspan="1">Reference (Spanish)</th><th colspan="1">Predicted (Spanish), Source speaker</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="audio">
+                  <td><audio controls=""><source src="examples/conv_en_es/1/src.wav" type="audio/wav"></td>
+                  <td><audio controls=""><source src="examples/conv_en_es/1/ref.wav" type="audio/wav"></td>
+                  <td><audio controls=""><source src="examples/conv_en_es/1/pred.wav" type="audio/wav"></td>
+                </tr>
+                <tr class="transcript">
+                  <td>So, why are you doing this?</td>
+                  <td>Entonces, ¿por qué estás haciendo esto?</td>
+                  <td>Bien por qué estás haciendo esto?</td>
+                </tr>
+                <tr class="audio">
+                  <td><audio controls=""><source src="examples/conv_en_es/2/src.wav" type="audio/wav"></td>
+                  <td><audio controls=""><source src="examples/conv_en_es/2/ref.wav" type="audio/wav"></td>
+                  <td><audio controls=""><source src="examples/conv_en_es/2/pred.wav" type="audio/wav"></td>
+                </tr>
+                <tr class="transcript">
+                  <td>Yeah, I know, but I need to learn.</td>
+                  <td>Sí, lo sé, pero necesito aprender.</td>
+                  <td>Sí lo sé pero necesito aprendeo.</td>
+                </tr>
+                <tr class="audio">
+                  <td><audio controls=""><source src="examples/conv_en_es/3/src.wav" type="audio/wav"></td>
+                  <td><audio controls=""><source src="examples/conv_en_es/3/ref.wav" type="audio/wav"></td>
+                  <td><audio controls=""><source src="examples/conv_en_es/3/pred.wav" type="audio/wav"></td>
+                </tr>
+                <tr class="transcript">
+                  <td>It is a great weight, but also it is a necessity.</td>
+                  <td>Es un gran peso, pero también es una necesidad.</td>
+                  <td>Es un gran peso pero también es una gran consecuencia.</td>
+                </tr>
+                <tr class="audio">
+                  <td><audio controls=""><source src="examples/conv_en_es/4/src.wav" type"audio/wav"></td>
+                  <td><audio controls=""><source src="examples/conv_en_es/4/ref.wav" type="audio/wav"></td>
+                  <td><audio controls=""><source src="examples/conv_en_es/4/pred.wav" type="audio/wav"></td>
+                </tr>
+                <tr class="transcript">
+                  <td>Check Availability at Residence Casamalfi.</td>
+                  <td>compruebe la disponibilidad de Residence Casamalfi.</td>
+                  <td>Compruebe la disponibilidad de residence stat.</td>
+                </tr>
+                <tr class="audio">
+                  <td><audio controls=""><source src="examples/conv_en_es/5/src.wav" type="audio/wav"></td>
+                  <td><audio controls=""><source src="examples/conv_en_es/5/ref.wav" type="audio/wav"></td>
+                  <td><audio controls=""><source src="examples/conv_en_es/5/pred.wav" type="audio/wav"></td>
+                </tr>
+                <tr class="transcript">
+                  <td>I do not care what he says.</td>
+                  <td>No me importa lo que diga.</td>
+                  <td>No me importa lo que le diga.</td>
+                </tr>
+              </tbody>
+        </table>
+        </div>
+      <a id="CommonVoice11SynthesizedSTE"><h2 >Spanish-to-English (on CommonVoice11 Synthesized dataset)</h2></a>
+      <div class="table-container">
+        <table class="sample-table" id="conversational-table">
+      	      <colgroup><col>
+              </colgroup><thead>
+                <tr>
+                  <th colspan="1">Source (Spanish)</th><th colspan="1">Reference (English)</th><th colspan="1">Predicted (English), Source speaker</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="audio">
+                  <td><audio controls=""><source src="examples/cm-s_es_en/1/src.wav" type="audio/wav"></td>
+                  <td><audio controls=""><source src="examples/cm-s_es_en/1/ref.wav" type="audio/wav"></td>
+                  <td><audio controls=""><source src="examples/cm-s_es_en/1/pred.wav" type="audio/wav"></td>
+                </tr>
+                <tr class="transcript">
+                  <td>Esto es una familia. y en una familia.</td>
+                  <td>This is a family and in a family.</td>
+                  <td>This is a family, and, in a family.</td>
+                </tr>
+                <tr class="audio">
+                  <td><audio controls=""><source src="examples/cm-s_es_en/2/src.wav"=type="audio/wav"></td>
+                  <td><audio controls=""><source src="examples/cm-s_es_en/2/ref.wav"=type="audio/wav"></td>
+                  <td><audio controls=""><source src="examples/cm-s_es_en/2/pred.wav"=type="audio/wav"></td>
+                </tr>
+                <tr class="transcript">
+                  <td>Participó en la Royal Rumble, pero fue eliminado por R-Truth.</td>
+                  <td>He participated in the Royal Rumble, but was eliminated by R-Truth.</td>
+                  <td>He participated in the royal rumble but was eliminated by airtrue.</td>
+                </tr>
+                <tr class="audio">
+                  <td><audio controls=""><source src="examples/cm-s_es_en/3/src.wav" type="audio/wav"></td>
+                  <td><audio controls=""><source src="examples/cm-s_es_en/3/ref.wav" type="audio/wav"></td>
+                  <td><audio controls=""><source src="examples/cm-s_es_en/3/pred.wav" type="audio/wav"></td>
+                </tr>
+                <tr class="transcript">
+                  <td>En Diciembre, el grupo está evidentemente presente en el tradicional evento Dis Inferno.</td>
+                  <td>In December the group is evidently present in the traditional event Des Infn.</td>
+                  <td>In December, the group is evidently present in the traditional event Dis Inferno.</td>
+                </tr>
+                <tr class="audio">
+                  <td><audio controls=""><source src="examples/cm-s_es_en/4/src.wav" type="audio/wav"></td>
+                  <td><audio controls=""><source src="examples/cm-s_es_en/4/ref.wav" type="audio/wav"></td>
+                  <td><audio controls=""><source src="examples/cm-s_es_en/4/pred.wav" type="audio/wav"></td>
+                </tr>
+                <tr class="transcript">
+                  <td>Los dos ganadores disputaron la final.</td>
+                  <td>The two winners disputed the final.</td>
+                  <td>The two winners disputed the final.</td>
+                </tr>
+                <tr class="audio">
+                  <td><audio controls=""><source src="examples/cm-s_es_en/5/src.wav" type="audio/wav"></td>
+                  <td><audio controls=""><source src="examples/cm-s_es_en/5/ref.wav" type="audio/wav"></td>
+                  <td><audio controls=""><source src="examples/cm-s_es_en/5/pred.wav" type="audio/wav"></td>
+                </tr>
+                <tr class="transcript">
+                  <td>Líricamente, el álbum es muy político.</td>
+                  <td>Lyrically the album is very political.</td>
+                  <td>Lyrically, the album is very political.</td>
+                </tr>
+              </tbody>
+        </table>
+        </div>
+      <a id="CommonVoice11SynthesizedETS"><h2>English-to-Spanish (on CommonVoice11 Synthesized dataset)</h2></a>
+      <div class="table-container">
+        <table  class="sample-table" id="conversational-table">
+      	      <colgroup><col>
+              </colgroup><thead>
+                <tr>
+                  <th colspan="1">Source (English)</th><th colspan="1">Reference (Spanish)</th><th colspan="1">Predicted (Spanish), Source speaker</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="audio">
+                  <td><audio controls=""><source src="examples/cm-s_en_es/1/src.wav" type="audio/wav"></td>
+                  <td><audio controls=""><source src="examples/cm-s_en_es/1/ref.wav" type="audio/wav"></td>
+                  <td><audio controls=""><source src="examples/cm-s_en_es/1/pred.wav" type="audio/wav"></td>
+                </tr>
+                <tr class="transcript">
+                  <td>Her mother, Angela, is a public servant, and her father, Tony, is a psychologist.</td>
+                  <td>Su madre, Angela, es una servidora pública y su padre, Tony, es un psicólogo.</td>
+                  <td>Su madre Angela es una poca sirviente y su padre Tony es un psicólogo</td>
+                </tr>
+                <tr class="audio">
+                  <td><audio controls=""><source src="examples/cm-s_en_es/2/src.wav" type="audio/wav"></td>
+                  <td><audio controls=""><source src="examples/cm-s_en_es/2/ref.wav" type="audio/wav"></td>
+                  <td><audio controls=""><source src="examples/cm-s_en_es/2/pred.wav" type="audio/wav"></td>
+                </tr>
+                <tr class="transcript">
+                  <td>The organization has worked in Honduras, Colombia, Venezuela, Uganda and the United States.</td>
+                  <td>La organización ha trabajado en Honduras, Colombia, Venezuela, Uganda y Estados Unidos.</td>
+                  <td>La organización ha trabajado en Honduras Colombia Venezuela Uganda y Estados Unidos.</td>
+                </tr>
+                <tr class="audio">
+                  <td><audio controls=""><source src="examples/cm-s_en_es/3/src.wav" type="audio/wav"></td>
+                  <td><audio controls=""><source src="examples/cm-s_en_es/3/ref.wav" type="audio/wav"></td>
+                  <td><audio controls=""><source src="examples/cm-s_en_es/3/pred.wav" type="audio/wav"></td>
+                </tr>
+                <tr class="transcript">
+                  <td>Practically all songs have been written by Michelle.</td>
+                  <td>Prácticamente todas las canciones han sido escritas por Michelle.</td>
+                  <td>Prácticamente todas las canciones han sido escritas por Miche.</td>
+                </tr>
+                <tr class="audio">
+                  <td><audio controls=""><source src="examples/cm-s_en_es/4/src.wav" type="audio/wav"></td>
+                  <td><audio controls=""><source src="examples/cm-s_en_es/4/ref.wav" type="audio/wav"></td>
+                  <td><audio controls=""><source src="examples/cm-s_en_es/4/pred.wav" type="audio/wav"></td>
+                </tr>
+                <tr class="transcript">
+                  <td>He attended Wellesley College, where he studied physics and astronomy.</td>
+                  <td>Asistió al Wellesley College, donde estudió física y astronomía.</td>
+                  <td>Asistió al Wesley college donde estudió física y astronomía.</td>
+                </tr>
+                <tr class="audio">
+                  <td><audio controls=""><source src="examples/cm-s_en_es/5/src.wav" type="audio/wav"></td>
+                  <td><audio controls=""><source src="examples/cm-s_en_es/5/ref.wav" type="audio/wav"></td>
+                  <td><audio controls=""><source src="examples/cm-s_en_es/5/pred.wav" type="audio/wav"></td>
+                </tr>
+                <tr class="transcript">
+                  <td>Three days in four chapters, in four stories of four friends.</td>
+                  <td>Tres días en cuatro capítulos en cuatro historias de cuatro amigos.</td>
+                  <td>Tres días en cuatro capítulos en cuatro historias de cuatro amigos.</td>
+                </tr>
+              </tbody>
+        </table>
+        </div>
+      <a id="CommonVoice11RealETS"><h2 >Spanish-to-English (on CommonVoice11 dataset)</h2></a>
+      <div class="table-container">
+        <table class="sample-table" id="conversational-table">
+      	      <colgroup><col>
+              </colgroup><thead>
+                <tr>
+                  <th colspan="1">Source (Spanish)</th><th colspan="1">Reference (English)</th><th colspan="1">Predicted (English), Source speaker</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="audio">
+                  <td><audio controls=""><source src="examples/cm-e/1/src.wav" type="audio/wav"></td>
+                  <td><audio controls=""><source src="examples/cm-e/1/ref.wav" type="audio/wav"></td>
+                  <td><audio controls=""><source src="examples/cm-e/1/pred.wav" type="audio/wav"></td>
+                </tr>
+                <tr class="transcript">
+                  <td>Trabajó con orquestas en Rusia, y con músicos en Europa y los Estados Unidos.</td>
+                  <td>He worked with orchestras in Russia, and with musicians in Europe and the United States.</td>
+                  <td>Traveled with orchestrs in Russia and with musicians in Europe and the United States.</td>
+                </tr>
+                <tr class="audio">
+                  <td><audio controls=""><source src="examples/cm-e/2/src.wav" type="audio/wav"></td>
+                  <td><audio controls=""><source src="examples/cm-e/2/ref.wav" type="audio/wav"></td>
+                  <td><audio controls=""><source src="examples/cm-e/2/pred.wav" type="audio/wav"></td>
+                </tr>
+                <tr class="transcript">
+                  <td>Con ella muchas ciudades y colonias asumieron el rango de "municipium". </td>
+                  <td>With it, many cities and colonies assumed the rank of “municipium”.</td>
+                  <td>With him many cities and colonies assumed the rank of minicippia.</td>
+                </tr>
+                <tr class="audio">
+                  <td><audio controls=""><source src="examples/cm-e/3/src.wav" type="audio/wav"></td>
+                  <td><audio controls=""><source src="examples/cm-e/3/ref.wav" type="audio/wav"></td>
+                  <td><audio controls=""><source src="examples/cm-e/3/pred.wav" type="audio/wav"></td>
+                </tr>
+                <tr class="transcript">
+                  <td>Hay tres generaciones por año en el sur de Texas.</td>
+                  <td>There are three generations per year in the south of Texas.</td>
+                  <td>I three generations per year in the south of Texas.</td>
+                </tr>
+                <tr class="audio">
+                  <td><audio controls=""><source src="examples/cm-e/4/src.wav" type="audio/wav"></td>
+                  <td><audio controls=""><source src="examples/cm-e/4/ref.wav" type="audio/wav"></td>
+                  <td><audio controls=""><source src="examples/cm-e/4/pred.wav" type="audio/wav"></td>
+                </tr>
+                <tr class="transcript">
+                  <td>Fue enterrado en Madison, Wisconsin.</td>
+                  <td>He was buried in Madison, Wisconsin.</td>
+                  <td>He was buried in Madison Wisconsin.</td>
+                </tr>
+                <tr class="audio">
+                  <td><audio controls=""><source src="examples/cm-e/5/src.wav" type="audio/wav"></td>
+                  <td><audio controls=""><source src="examples/cm-e/5/ref.wav" type="audio/wav"></td>
+                  <td><audio controls=""><source src="examples/cm-e/5/pred.wav" type="audio/wav"></td>
+                </tr>
+                <tr class="transcript">
+                  <td>Algunos autores clasifican esa información como falsa.</td>
+                  <td>Some authors classify that information as false.</td>
+                  <td>All authors classify that information as fall.</td>
+                </tr>
+              </tbody>
+        </table>
+	</div>
+  
+</body></html>
