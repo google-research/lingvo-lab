@@ -42,19 +42,10 @@
 
 	<div class="abs">
       <p>
-        This paper presents Translatotron 3, a novel approach to train a direct speech-to-speech translation model from monolingual datasets only in a fully unsupervised manner. Translatotron 3 combines masked autoencoder, unsupervised embedding mapping, and back-translation to achieve this goal. Experimental results in speech-to-speech translation tasks between Spanish and English using synthetic datasets show that Translatotron 3 outperforms a baseline cascade system, reporting 10.5 BLEU points improvement on the synthesized Unpaired-Conversational dataset. Furthermore, for real speech dataset, Common Voice 11, Translatotron 3 demonstrate its ability to transfer para-/non-linguistic characteristics of the source speech.
-      </p>
+        This paper presents Translatotron 3, a novel approach to unsupervised direct speech-to-speech translation from monolingual speech-text datasets by combining masked autoencoder, unsupervised embedding mapping, and back-translation. Experimental results in speech-to-speech translation tasks between Spanish and English show that Translatotron 3 outperforms a baseline cascade system, reporting 18.14 BLEU points improvement on the synthesized Unpaired-Conversational dataset. In contrast to supervised approaches that necessitate real paired data, or specialized modeling to replicate para-/non-linguistic information such as such as pauses, speaking rates, and speaker identity, Translatotron 3 showcases its capability to retain it. 
 	</div>
 
-      <h1>Paper</h1>
-      <div class="paper">
-        <a href="https://arxiv.org/abs/2305.17547" target="_blank">
-          <img src="images/paper.png" alt="first page of paper" />
-        </a>
-      </div>
-      <div class="paper">
-        <div><a href="https://arxiv.org/abs/2305.17547">[arXiv]</a></div>
-      </div>
+      
 
       <h1>Model</h1>
       <div class="scroll-container">
@@ -405,5 +396,16 @@ The two training phases in the proposed approach. (1) Phase 1 uses the reconstru
               </tbody>
         </table>
 	</div>
+
+  <div style="text-align:center">
+    <h3>Translatotron 3 Hyperparameter table:</h3>
+    <object
+      type="application/pdf"
+      data="images/hyp_table.pdf"
+      width="600"
+      height="800"
+    >
+    </object>
+  </div>
   
 </body></html>
